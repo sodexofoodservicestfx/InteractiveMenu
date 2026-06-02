@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meal Builder</title>
+  <title>MH Meal Builder</title>
 
   <style>
     html, body {
@@ -15,7 +15,7 @@
     }
 
     /* =========================
-       PAGE SYSTEM (FADE FIX)
+       PAGE SYSTEM (FADE)
     ========================== */
     .page {
       position: fixed;
@@ -99,7 +99,9 @@
       100% { opacity: 0.4; }
     }
 
-    /* HOME */
+    /* =========================
+       HOME MENU
+    ========================== */
     .home-list {
       width: 90%;
       max-width: 900px;
@@ -133,7 +135,9 @@
       margin-bottom: 10px;
     }
 
-    /* CATEGORY LIST */
+    /* =========================
+       LIST PAGES
+    ========================== */
     .list {
       width: 85%;
       max-width: 900px;
@@ -150,7 +154,9 @@
       cursor: pointer;
     }
 
-    /* PRODUCT CARD */
+    /* =========================
+       ITEM CARD (NUTRITION)
+    ========================== */
     .card {
       background: white;
       padding: 45px;
@@ -186,9 +192,11 @@
 
 <body>
 
-<div class="topbar">🍽️ Meal Builder</div>
+<div class="topbar">🍽️ MH Meal Builder</div>
 
-<!-- WELCOME -->
+<!-- =========================
+     WELCOME SCREEN
+========================= -->
 <div id="welcome" class="page active" onclick="showPage('home')">
 
   <div class="welcome-content">
@@ -240,6 +248,7 @@
 <!-- PROTEIN -->
 <div id="protein" class="page">
   <div class="list">
+
     <div class="item" onclick="showPage('greek')">Greek Yogurt</div>
     <div class="item" onclick="showPage('eggs')">Eggs / Egg Wrap</div>
     <div class="item" onclick="showPage('chicken')">Chicken Wrap</div>
@@ -252,6 +261,7 @@
 <!-- VEGETABLES -->
 <div id="veg" class="page">
   <div class="list">
+
     <div class="item" onclick="showPage('salad')">Caesar Salad</div>
     <div class="item" onclick="showPage('rice')">Veggie Rice Bowl</div>
 
@@ -262,6 +272,7 @@
 <!-- FIBRE -->
 <div id="fibre" class="page">
   <div class="list">
+
     <div class="card">
       Fibre helps keep you full longer and supports digestion.
     </div>
@@ -275,6 +286,7 @@
 <!-- HEALTHY -->
 <div id="healthy" class="page">
   <div class="list">
+
     <div class="item" onclick="showPage('salad')">Caesar Salad</div>
     <div class="item" onclick="showPage('smoothie')">Protein Smoothie</div>
     <div class="item" onclick="showPage('greek')">Greek Yogurt</div>
@@ -283,11 +295,19 @@
   </div>
 </div>
 
-<!-- ITEM PAGES -->
+<!-- =========================
+     ITEM PAGES (WITH NUTRITION)
+========================= -->
+
 <div id="greek" class="page">
   <div class="card">
     <h2>Greek Yogurt</h2>
-    High protein snack, great with fruit or granola.<br><br>
+
+    Calories: 170<br>
+    Protein: 15g<br>
+    Carbs: 6g<br>
+    Fat: 9g<br><br>
+
     📍 Grab & Go fridge / Breakfast station
   </div>
   <div class="button back" onclick="showPage('protein')">← Back</div>
@@ -296,7 +316,12 @@
 <div id="eggs" class="page">
   <div class="card">
     <h2>Eggs / Egg Wrap</h2>
-    High-quality protein breakfast option.<br><br>
+
+    Calories: 420<br>
+    Protein: 24g<br>
+    Carbs: 30g<br>
+    Fat: 22g<br><br>
+
     📍 Breakfast station
   </div>
   <div class="button back" onclick="showPage('protein')">← Back</div>
@@ -305,7 +330,12 @@
 <div id="chicken" class="page">
   <div class="card">
     <h2>Chicken Wrap</h2>
-    Balanced high-protein meal option.<br><br>
+
+    Calories: 520<br>
+    Protein: 38g<br>
+    Carbs: 42g<br>
+    Fat: 18g<br><br>
+
     📍 Lunch station
   </div>
   <div class="button back" onclick="showPage('protein')">← Back</div>
@@ -314,7 +344,12 @@
 <div id="smoothie" class="page">
   <div class="card">
     <h2>Protein Smoothie</h2>
-    Quick protein boost, ideal post-activity.<br><br>
+
+    Calories: 250<br>
+    Protein: 30g<br>
+    Carbs: 28g<br>
+    Fat: 4g<br><br>
+
     📍 Beverage station
   </div>
   <div class="button back" onclick="showPage('protein')">← Back</div>
@@ -323,7 +358,12 @@
 <div id="salad" class="page">
   <div class="card">
     <h2>Caesar Salad</h2>
-    Adds fresh vegetables to your meal.<br><br>
+
+    Calories: 310<br>
+    Protein: 12g<br>
+    Carbs: 10g<br>
+    Fat: 22g<br><br>
+
     📍 Salad bar
   </div>
   <div class="button back" onclick="showPage('veg')">← Back</div>
@@ -332,7 +372,12 @@
 <div id="rice" class="page">
   <div class="card">
     <h2>Veggie Rice Bowl</h2>
-    Balanced meal with vegetables and grains.<br><br>
+
+    Calories: 610<br>
+    Protein: 20g<br>
+    Carbs: 70g<br>
+    Fat: 15g<br><br>
+
     📍 Hot food station
   </div>
   <div class="button back" onclick="showPage('veg')">← Back</div>
@@ -341,7 +386,12 @@
 <div id="oats" class="page">
   <div class="card">
     <h2>Protein Oatmeal</h2>
-    High fibre option that keeps you full longer.<br><br>
+
+    Calories: 380<br>
+    Protein: 20g<br>
+    Carbs: 55g<br>
+    Fat: 8g<br><br>
+
     📍 Breakfast station
   </div>
   <div class="button back" onclick="showPage('fibre')">← Back</div>
@@ -365,7 +415,7 @@ function resetTimer() {
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(() => {
     goToWelcome();
-  }, 45000); // 45 seconds
+  }, 60000); // 60 seconds
 }
 
 document.addEventListener('click', resetTimer);
