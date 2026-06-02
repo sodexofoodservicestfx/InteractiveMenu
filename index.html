@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meal Builder</title>
+  <title>MH Meal Builder</title>
 
   <style>
     html, body {
@@ -14,7 +14,7 @@
       color: #222;
     }
 
-    /* TOP BAR (like real kiosks) */
+    /* TOP BAR (kiosk header) */
     .topbar {
       position: fixed;
       top: 0;
@@ -42,39 +42,44 @@
       display: block;
     }
 
-    /* HOME GRID (KIOSK TILE STYLE) */
+    /* =========================
+       HOME: 4 x 1 KIOSK ROW
+    ========================== */
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      width: 90%;
-      max-width: 1000px;
-      margin: 30px auto;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      width: 95%;
+      max-width: 1400px;
+      margin: 60px auto;
     }
 
     .tile {
       background: white;
-      border-radius: 25px;
-      padding: 50px 20px;
-      font-size: 28px;
+      border-radius: 30px;
+      padding: 100px 20px; /* BIG kiosk buttons */
+      font-size: 34px;
       font-weight: bold;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
       transition: transform 0.1s ease;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .tile:active {
-      transform: scale(0.97);
+      transform: scale(0.96);
     }
 
     .tile span {
-      font-size: 50px;
-      display: block;
-      margin-bottom: 10px;
+      font-size: 80px;
+      margin-bottom: 15px;
     }
 
-    /* CATEGORY LIST (like menu screen) */
+    /* CATEGORY LIST */
     .list {
       width: 85%;
       max-width: 900px;
@@ -83,7 +88,7 @@
 
     .item {
       background: white;
-      padding: 30px;
+      padding: 35px;
       margin: 18px 0;
       border-radius: 20px;
       font-size: 30px;
@@ -91,10 +96,10 @@
       cursor: pointer;
     }
 
-    /* PRODUCT PAGE */
+    /* PRODUCT CARD */
     .card {
       background: white;
-      padding: 40px;
+      padding: 45px;
       margin: 30px auto;
       width: 85%;
       max-width: 800px;
@@ -102,6 +107,7 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       font-size: 28px;
       line-height: 1.6;
+      text-align: left;
     }
 
     /* BUTTONS */
@@ -111,7 +117,7 @@
       padding: 30px;
       width: 80%;
       max-width: 600px;
-      background: #fff;
+      background: white;
       border-radius: 20px;
       font-size: 28px;
       text-align: center;
@@ -152,13 +158,13 @@
 
     <div class="tile" onclick="showPage('healthy')">
       <span>🥗</span>
-      Healthier Choices
+      Healthy Choices
     </div>
 
   </div>
 </div>
 
-<!-- CATEGORY -->
+<!-- PROTEIN -->
 <div id="protein" class="page">
   <div class="list">
     <div class="item" onclick="showPage('greek')">Greek Yogurt</div>
@@ -170,6 +176,7 @@
   </div>
 </div>
 
+<!-- VEGETABLES -->
 <div id="veg" class="page">
   <div class="list">
     <div class="item" onclick="showPage('salad')">Caesar Salad</div>
@@ -179,10 +186,11 @@
   </div>
 </div>
 
+<!-- FIBRE -->
 <div id="fibre" class="page">
   <div class="list">
     <div class="card">
-      Fibre helps you stay full longer and supports digestion.
+      Fibre helps keep you full longer and supports digestion.
     </div>
 
     <div class="item" onclick="showPage('oats')">Protein Oatmeal</div>
@@ -191,6 +199,7 @@
   </div>
 </div>
 
+<!-- HEALTHY -->
 <div id="healthy" class="page">
   <div class="list">
     <div class="item" onclick="showPage('salad')">Caesar Salad</div>
@@ -201,7 +210,7 @@
   </div>
 </div>
 
-<!-- PRODUCT PAGES -->
+<!-- ITEM PAGES -->
 <div id="greek" class="page">
   <div class="card">
     <h2>Greek Yogurt</h2>
