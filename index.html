@@ -22,6 +22,7 @@
       width: 100vw;
       height: 100vh;
       background: #f4f6f8;
+
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.5s ease;
@@ -35,4 +36,227 @@
 
     /* TOP BAR */
     .topbar {
-      position
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      z-index: 10;
+    }
+
+    /* ================= WELCOME ================= */
+    #welcome {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .welcome-title {
+      font-size: 90px;
+      font-weight: bold;
+    }
+
+    .welcome-sub {
+      font-size: 40px;
+      opacity: 0.6;
+      margin-top: 20px;
+    }
+
+    /* ================= HOME ================= */
+    .home-list {
+      width: 90%;
+      max-width: 900px;
+      margin: 120px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .tile {
+      background: white;
+      padding: 40px;
+      font-size: 32px;
+      font-weight: bold;
+      border-radius: 25px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* ================= LIST ================= */
+    .list {
+      width: 85%;
+      max-width: 900px;
+      margin: 120px auto;
+    }
+
+    .item {
+      background: white;
+      padding: 30px;
+      margin: 18px 0;
+      border-radius: 20px;
+      font-size: 28px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      cursor: pointer;
+    }
+
+    /* ================= DETAILS ================= */
+    .card {
+      background: white;
+      padding: 45px;
+      margin: 120px auto 30px auto;
+      width: 85%;
+      max-width: 800px;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      font-size: 28px;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: block;
+      margin: 20px auto;
+      padding: 30px;
+      width: 80%;
+      max-width: 600px;
+      background: white;
+      border-radius: 20px;
+      font-size: 28px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    }
+
+    .back {
+      background: #e0e0e0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">🍽️ MH Meal Builder</div>
+
+<!-- WELCOME -->
+<div id="welcome" class="page active" onclick="showPage('home')">
+  <div>
+    <div class="welcome-title">MEAL HALL</div>
+    <div class="welcome-sub">Tap Anywhere to Begin</div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page">
+
+  <div class="home-list">
+    <div class="tile" onclick="openList('protein')">🍗 Protein Picks</div>
+    <div class="tile" onclick="openList('veg')">🥦 Veggie Picks</div>
+    <div class="tile" onclick="openList('fibre')">🌾 Fibre & Grains</div>
+    <div class="tile" onclick="openList('drinks')">🧃 Drinks</div>
+    <div class="tile" onclick="openList('top')">⭐ Top Picks</div>
+  </div>
+
+</div>
+
+<!-- LIST -->
+<div id="list" class="page">
+  <div class="list" id="listContent"></div>
+</div>
+
+<!-- DETAILS -->
+<div id="details" class="page">
+  <div class="card" id="detailsContent"></div>
+  <div class="button back" onclick="showPage('home')">← Home</div>
+</div>
+
+<script>
+
+let data = {
+  protein: [
+    { name:"Chicken Wrap", cal:520, p:"38g", c:"42g", f:"18g", loc:"Lunch Station" },
+    { name:"Egg Wrap", cal:420, p:"24g", c:"30g", f:"22g", loc:"Breakfast Station" },
+    { name:"Greek Yogurt", cal:170, p:"15g", c:"6g", f:"9g", loc:"Grab & Go" }
+  ],
+  veg: [
+    { name:"Caesar Salad", cal:310, p:"12g", c:"10g", f:"22g", loc:"Salad Bar" },
+    { name:"Veggie Bowl", cal:150, p:"6g", c:"18g", f:"5g", loc:"Hot Station" }
+  ],
+  fibre: [
+    { name:"Protein Oatmeal", cal:380, p:"20g", c:"55g", f:"8g", loc:"Breakfast Station" },
+    { name:"Brown Rice Bowl", cal:410, p:"10g", c:"72g", f:"6g", loc:"Hot Station" }
+  ],
+  drinks: [
+    { name:"Protein Smoothie", cal:250, p:"30g", c:"28g", f:"4g", loc:"Drink Station" },
+    { name:"Iced Coffee", cal:120, p:"5g", c:"18g", f:"3g", loc:"Drink Station" }
+  ],
+  top: [
+    { name:"High Protein Combo", cal:770, p:"68g", c:"70g", f:"22g", loc:"Combo Area" }
+  ]
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  resetTimer();
+}
+
+function openList(category) {
+  let html = "";
+
+  data[category].forEach((item, i) => {
+    html += `
+      <div class="item" onclick="openDetails('${category}', ${i})">
+        ${item.name}
+      </div>
+    `;
+  });
+
+  document.getElementById("listContent").innerHTML = html;
+  showPage('list');
+}
+
+function openDetails(category, index) {
+  let item = data[category][index];
+
+  document.getElementById("detailsContent").innerHTML = `
+    <h2>${item.name}</h2><br>
+
+    Calories: ${item.cal}<br>
+    Protein: ${item.p}<br>
+    Carbs: ${item.c}<br>
+    Fat: ${item.f}<br><br>
+
+    📍 Location: ${item.loc}
+  `;
+
+  showPage('details');
+}
+
+/* 60 SECOND RESET */
+let timer;
+
+function resetTimer() {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    showPage('welcome');
+  }, 60000);
+}
+
+document.addEventListener('click', resetTimer);
+document.addEventListener('touchstart', resetTimer);
+
+resetTimer();
+
+</script>
+
+</body>
+</html>
