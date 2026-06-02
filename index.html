@@ -14,7 +14,7 @@
       color: #222;
     }
 
-    /* TOP BAR (kiosk header) */
+    /* TOP BAR */
     .topbar {
       position: fixed;
       top: 0;
@@ -43,40 +43,39 @@
     }
 
     /* =========================
-       HOME: 4 x 1 KIOSK ROW
+       HOME: 1 x 4 VERTICAL KIOSK
     ========================== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    .home-list {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
       gap: 30px;
-      width: 95%;
-      max-width: 1400px;
-      margin: 60px auto;
     }
 
     .tile {
       background: white;
       border-radius: 30px;
-      padding: 100px 20px; /* BIG kiosk buttons */
-      font-size: 34px;
+      padding: 50px;
+      font-size: 32px;
       font-weight: bold;
       text-align: center;
       cursor: pointer;
       box-shadow: 0 8px 22px rgba(0,0,0,0.15);
       transition: transform 0.1s ease;
-
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: center;
     }
 
     .tile:active {
-      transform: scale(0.96);
+      transform: scale(0.97);
     }
 
     .tile span {
-      font-size: 80px;
-      margin-bottom: 15px;
+      font-size: 70px;
+      margin-bottom: 10px;
     }
 
     /* CATEGORY LIST */
@@ -107,7 +106,6 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       font-size: 28px;
       line-height: 1.6;
-      text-align: left;
     }
 
     /* BUTTONS */
@@ -139,7 +137,7 @@
 <!-- HOME -->
 <div id="home" class="page active">
 
-  <div class="grid">
+  <div class="home-list">
 
     <div class="tile" onclick="showPage('protein')">
       <span>🍗</span>
@@ -158,7 +156,7 @@
 
     <div class="tile" onclick="showPage('healthy')">
       <span>🥗</span>
-      Healthy Choices
+      Healthier Choices
     </div>
 
   </div>
