@@ -2,45 +2,73 @@
 <html>
 <head>
   <title>Food Menu</title>
+
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       text-align: center;
-      background: #f4f4f4;
-      font-size: 28px;
+      background: #eef2f5;
+      font-size: 26px;
       margin: 0;
+      color: #222;
     }
 
     h1 {
-      font-size: 60px;
-      margin-top: 40px;
+      font-size: 64px;
+      margin: 40px 0 20px;
     }
 
     .page {
       display: none;
-      padding: 20px;
+      padding: 30px;
     }
 
     .active {
       display: block;
     }
 
+    /* MAIN BUTTON STYLE (KIOSK CARDS) */
     .button {
       display: block;
       margin: 25px auto;
-      padding: 35px;
-      width: 500px;
+      padding: 40px;
+      width: 80%;
+      max-width: 600px;
       background: white;
-      border-radius: 20px;
-      font-size: 32px;
+      border-radius: 25px;
+      font-size: 34px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.1s ease;
     }
 
-    .back {
-      background: #ddd;
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    /* BACK/HOME BUTTON */
+    .nav {
+      background: #d9d9d9;
       font-size: 28px;
     }
+
+    .nav-bar {
+      margin-top: 40px;
+    }
+
+    /* ITEM PAGE STYLE */
+    .info {
+      background: white;
+      padding: 40px;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 700px;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      font-size: 30px;
+      line-height: 1.6;
+    }
+
   </style>
 </head>
 
@@ -48,98 +76,143 @@
 
 <!-- HOME -->
 <div id="home" class="page active">
-  <h1>Menu</h1>
-  <div class="button" onclick="showPage('breakfast')">Breakfast</div>
-  <div class="button" onclick="showPage('lunch')">Lunch</div>
-  <div class="button" onclick="showPage('drinks')">Drinks</div>
+  <h1>🍽️ Menu</h1>
+
+  <div class="button" onclick="showPage('breakfast')">🍳 Breakfast</div>
+  <div class="button" onclick="showPage('lunch')">🥗 Lunch</div>
+  <div class="button" onclick="showPage('drinks')">🥤 Drinks</div>
 </div>
 
 <!-- BREAKFAST -->
 <div id="breakfast" class="page">
-  <h1>Breakfast</h1>
+  <h1>🍳 Breakfast</h1>
 
   <div class="button" onclick="showPage('eggwrap')">Egg Wrap</div>
   <div class="button" onclick="showPage('oatmeal')">Protein Oatmeal</div>
 
-  <div class="button back" onclick="showPage('home')">← Back</div>
+  <div class="nav-bar">
+    <div class="button nav" onclick="showPage('home')">🏠 Home</div>
+    <div class="button nav" onclick="showPage('home')">← Back</div>
+  </div>
 </div>
 
 <!-- LUNCH -->
 <div id="lunch" class="page">
-  <h1>Lunch</h1>
+  <h1>🥗 Lunch</h1>
 
   <div class="button" onclick="showPage('chickenwrap')">Chicken Wrap</div>
   <div class="button" onclick="showPage('salad')">Caesar Salad</div>
   <div class="button" onclick="showPage('ricebowl')">Protein Rice Bowl</div>
 
-  <div class="button back" onclick="showPage('home')">← Back</div>
+  <div class="nav-bar">
+    <div class="button nav" onclick="showPage('home')">🏠 Home</div>
+    <div class="button nav" onclick="showPage('home')">← Back</div>
+  </div>
 </div>
 
 <!-- DRINKS -->
 <div id="drinks" class="page">
-  <h1>Drinks</h1>
+  <h1>🥤 Drinks</h1>
 
   <div class="button" onclick="showPage('smoothie')">Protein Smoothie</div>
   <div class="button" onclick="showPage('coffee')">Iced Coffee</div>
 
-  <div class="button back" onclick="showPage('home')">← Back</div>
+  <div class="nav-bar">
+    <div class="button nav" onclick="showPage('home')">🏠 Home</div>
+    <div class="button nav" onclick="showPage('home')">← Back</div>
+  </div>
 </div>
 
 <!-- ITEM PAGES -->
 
 <div id="chickenwrap" class="page">
   <h1>Chicken Wrap</h1>
-  <p>Calories: 520</p>
-  <p>Protein: 38g</p>
-  <p>Carbs: 42g</p>
-  <p>Fat: 18g</p>
-  <div class="button back" onclick="showPage('lunch')">← Back</div>
+
+  <div class="info">
+    Calories: 520<br>
+    Protein: 38g<br>
+    Carbs: 42g<br>
+    Fat: 18g
+  </div>
+
+  <div class="button nav" onclick="showPage('lunch')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <div id="salad" class="page">
   <h1>Caesar Salad</h1>
-  <p>Calories: 310</p>
-  <p>Protein: 12g</p>
-  <p>Carbs: 10g</p>
-  <p>Fat: 22g</p>
-  <div class="button back" onclick="showPage('lunch')">← Back</div>
+
+  <div class="info">
+    Calories: 310<br>
+    Protein: 12g<br>
+    Carbs: 10g<br>
+    Fat: 22g
+  </div>
+
+  <div class="button nav" onclick="showPage('lunch')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <div id="ricebowl" class="page">
   <h1>Protein Rice Bowl</h1>
-  <p>Calories: 610</p>
-  <p>Protein: 45g</p>
-  <p>Carbs: 70g</p>
-  <p>Fat: 15g</p>
-  <div class="button back" onclick="showPage('lunch')">← Back</div>
+
+  <div class="info">
+    Calories: 610<br>
+    Protein: 45g<br>
+    Carbs: 70g<br>
+    Fat: 15g
+  </div>
+
+  <div class="button nav" onclick="showPage('lunch')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <div id="eggwrap" class="page">
   <h1>Egg Wrap</h1>
-  <p>Calories: 420</p>
-  <p>Protein: 24g</p>
-  <div class="button back" onclick="showPage('breakfast')">← Back</div>
+
+  <div class="info">
+    Calories: 420<br>
+    Protein: 24g
+  </div>
+
+  <div class="button nav" onclick="showPage('breakfast')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <div id="oatmeal" class="page">
   <h1>Protein Oatmeal</h1>
-  <p>Calories: 380</p>
-  <p>Protein: 20g</p>
-  <div class="button back" onclick="showPage('breakfast')">← Back</div>
+
+  <div class="info">
+    Calories: 380<br>
+    Protein: 20g
+  </div>
+
+  <div class="button nav" onclick="showPage('breakfast')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <div id="smoothie" class="page">
   <h1>Protein Smoothie</h1>
-  <p>Calories: 250</p>
-  <p>Protein: 30g</p>
-  <div class="button back" onclick="showPage('drinks')">← Back</div>
+
+  <div class="info">
+    Calories: 250<br>
+    Protein: 30g
+  </div>
+
+  <div class="button nav" onclick="showPage('drinks')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <div id="coffee" class="page">
   <h1>Iced Coffee</h1>
-  <p>Calories: 120</p>
-  <p>Protein: 5g</p>
-  <div class="button back" onclick="showPage('drinks')">← Back</div>
+
+  <div class="info">
+    Calories: 120<br>
+    Protein: 5g
+  </div>
+
+  <div class="button nav" onclick="showPage('drinks')">← Back</div>
+  <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
 <script>
