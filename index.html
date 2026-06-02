@@ -4,33 +4,48 @@
   <title>MH Meal Builder</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #eef2f5;
+    html, body {
+      height: 100%;
+      width: 100%;
       margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #eef2f5;
       color: #222;
+    }
+
+    body {
       font-size: 26px;
     }
 
     h1 {
       font-size: 60px;
-      margin: 30px 0 10px;
+      margin: 20px 0 10px;
+      text-align: center;
     }
 
     p {
       margin: 0;
       color: #555;
       font-size: 22px;
+      text-align: center;
     }
 
+    /* FULL SCREEN PAGES */
     .page {
       display: none;
-      padding: 20px;
+      height: 100vh;
+      width: 100vw;
+      padding: 30px;
+      box-sizing: border-box;
     }
 
-    .active {
-      display: block;
+    /* CENTER CONTENT LIKE A KIOSK */
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     /* HOME GRID */
@@ -40,7 +55,7 @@
       gap: 25px;
       width: 85%;
       max-width: 900px;
-      margin: 40px auto;
+      margin-top: 40px;
     }
 
     .card {
@@ -52,15 +67,17 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       cursor: pointer;
       transition: transform 0.1s ease;
+      text-align: center;
     }
 
     .card:active {
       transform: scale(0.97);
     }
 
+    /* BUTTONS */
     .button {
       display: block;
-      margin: 20px auto;
+      margin: 18px auto;
       padding: 35px;
       width: 80%;
       max-width: 650px;
@@ -69,6 +86,7 @@
       font-size: 30px;
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      text-align: center;
     }
 
     .nav {
@@ -76,6 +94,7 @@
       font-size: 26px;
     }
 
+    /* INFO BOX */
     .info {
       background: white;
       padding: 35px;
@@ -86,8 +105,8 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       font-size: 28px;
       line-height: 1.6;
+      text-align: left;
     }
-
   </style>
 </head>
 
@@ -166,8 +185,7 @@
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
-<!-- ITEM PAGES -->
-
+<!-- ITEM: GREEK YOGURT -->
 <div id="greek" class="page">
   <h1>Greek Yogurt</h1>
 
@@ -185,74 +203,97 @@
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
+<!-- ITEM: EGGS -->
 <div id="eggs" class="page">
   <h1>Eggs / Egg Wrap</h1>
+
   <div class="info">
     ✔ High-quality protein<br>
     ✔ Breakfast option<br><br>
+
     Where to find it:<br>
     • Breakfast station
   </div>
+
   <div class="button nav" onclick="showPage('protein')">← Back</div>
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
+<!-- ITEM: CHICKEN -->
 <div id="chicken" class="page">
   <h1>Chicken Wrap</h1>
+
   <div class="info">
     ✔ High protein meal<br>
     ✔ Balanced option<br><br>
+
     Where to find it:<br>
     • Lunch station
   </div>
+
   <div class="button nav" onclick="showPage('protein')">← Back</div>
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
+<!-- ITEM: SMOOTHIE -->
 <div id="smoothie" class="page">
   <h1>Protein Smoothie</h1>
+
   <div class="info">
     ✔ Quick protein boost<br>
     ✔ Good post-workout option<br><br>
+
     Where to find it:<br>
     • Beverage station
   </div>
+
   <div class="button nav" onclick="showPage('protein')">← Back</div>
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
+<!-- ITEM: SALAD -->
 <div id="salad" class="page">
   <h1>Caesar Salad</h1>
+
   <div class="info">
     ✔ Adds vegetables<br>
     ✔ Lighter meal option<br><br>
+
     Where to find it:<br>
     • Salad bar
   </div>
+
   <div class="button nav" onclick="showPage('veg')">← Back</div>
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
+<!-- ITEM: RICE -->
 <div id="rice" class="page">
   <h1>Veggie Rice Bowl</h1>
+
   <div class="info">
-    ✔ Includes vegetables + grains<br>
-    ✔ Balanced meal option<br><br>
+    ✔ Balanced meal with vegetables and grains<br><br>
+
     Where to find it:<br>
     • Hot food station
   </div>
+
   <div class="button nav" onclick="showPage('veg')">← Back</div>
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
 
+<!-- ITEM: OATS -->
 <div id="oats" class="page">
   <h1>Protein Oatmeal</h1>
+
   <div class="info">
     ✔ High fibre option<br>
     ✔ Keeps you full longer<br><br>
+
     Where to find it:<br>
     • Breakfast station
   </div>
+
   <div class="button nav" onclick="showPage('fibre')">← Back</div>
   <div class="button nav" onclick="showPage('home')">🏠 Home</div>
 </div>
@@ -262,21 +303,6 @@ function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
 }
-
-/* AUTO RESET TO HOME AFTER 60s OF INACTIVITY */
-let timer;
-
-function resetTimer() {
-  clearTimeout(timer);
-  timer = setTimeout(() => {
-    showPage('home');
-  }, 60000);
-}
-
-document.addEventListener('click', resetTimer);
-document.addEventListener('touchstart', resetTimer);
-
-resetTimer();
 </script>
 
 </body>
