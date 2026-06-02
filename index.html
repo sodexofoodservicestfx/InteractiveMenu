@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meal Builder</title>
+  <title>MH Meal Builder</title>
 
   <style>
     html, body {
       height: 100%;
-      width: 100%;
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: #f4f6f8;
       overflow: hidden;
-      color: #222;
     }
 
-    /* =========================
-       PAGE SYSTEM (FADE)
-    ========================== */
     .page {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #f4f6f8;
-
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.5s ease;
+      transition: 0.4s ease;
+      background: #f4f6f8;
       overflow-y: auto;
     }
 
@@ -36,382 +30,252 @@
       pointer-events: auto;
     }
 
-    /* TOP BAR */
     .topbar {
       position: fixed;
       top: 0;
-      left: 0;
-      right: 0;
+      width: 100%;
       height: 90px;
       background: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 34px;
+      font-size: 32px;
       font-weight: bold;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    /* =========================
-       WELCOME SCREEN
-    ========================== */
-    #welcome {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .welcome-content {
-      max-width: 1200px;
-      padding: 40px;
-    }
-
-    .welcome-title {
-      font-size: 100px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .welcome-subtitle {
-      font-size: 72px;
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
-
-    .welcome-text {
-      font-size: 36px;
-      line-height: 1.5;
-      margin-bottom: 80px;
-    }
-
-    .tap-message {
-      font-size: 42px;
-      font-weight: bold;
-      color: #666;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 0.4; }
-      50% { opacity: 1; }
-      100% { opacity: 0.4; }
-    }
-
-    /* =========================
-       HOME MENU
-    ========================== */
-    .home-list {
-      width: 90%;
-      max-width: 900px;
-      margin: 120px auto 40px auto;
+    /* HOME */
+    .home {
       display: flex;
       flex-direction: column;
       gap: 25px;
+      padding: 120px 40px;
+      max-width: 900px;
+      margin: auto;
     }
 
     .tile {
       background: white;
-      border-radius: 25px;
       padding: 40px;
       font-size: 32px;
       font-weight: bold;
+      border-radius: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
-      transition: transform 0.1s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
-    .tile:active {
-      transform: scale(0.97);
-    }
-
-    .tile span {
-      font-size: 60px;
-      margin-bottom: 10px;
-    }
-
-    /* LIST ITEMS */
+    /* LIST */
     .list {
-      width: 85%;
+      padding: 120px 40px;
       max-width: 900px;
-      margin: 120px auto 20px auto;
+      margin: auto;
     }
 
     .item {
       background: white;
       padding: 30px;
-      margin: 18px 0;
-      border-radius: 20px;
-      font-size: 26px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-      cursor: pointer;
-      line-height: 1.4;
-    }
-
-    .item strong {
-      font-size: 30px;
-    }
-
-    /* CARD */
-    .card {
-      background: white;
-      padding: 45px;
-      margin: 120px auto 30px auto;
-      width: 85%;
-      max-width: 800px;
-      border-radius: 25px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      margin: 15px 0;
+      border-radius: 18px;
       font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    /* DETAILS */
+    .card {
+      padding: 120px 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .box {
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      font-size: 28px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       line-height: 1.6;
     }
 
-    .button {
-      display: block;
-      margin: 20px auto;
-      padding: 30px;
-      width: 80%;
-      max-width: 600px;
-      background: white;
-      border-radius: 20px;
-      font-size: 28px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-    }
-
     .back {
-      background: #e0e0e0;
+      margin-top: 25px;
+      background: #ddd;
+      padding: 25px;
+      text-align: center;
+      border-radius: 18px;
+      font-size: 26px;
+      cursor: pointer;
     }
-
   </style>
 </head>
 
 <body>
 
-<div class="topbar">🍽️ Meal Builder</div>
-
-<!-- WELCOME -->
-<div id="welcome" class="page active" onclick="showPage('home')">
-
-  <div class="welcome-content">
-    <div class="welcome-title">🍽️ MEAL HALL</div>
-    <div class="welcome-subtitle">Build a Better Meal</div>
-    <div class="welcome-text">
-      Discover simple ways to improve your meal using options available in the dining hall.
-    </div>
-    <div class="tap-message">Tap Anywhere to Begin</div>
-  </div>
-
-</div>
+<div class="topbar">🍽️ MH Meal Builder</div>
 
 <!-- HOME -->
-<div id="home" class="page">
+<div id="home" class="page active">
+  <div class="home">
 
-  <div class="home-list">
-
-    <div class="tile" onclick="showPage('protein')">
-      <span>🍗</span>
-      Protein Picks
-    </div>
-
-    <div class="tile" onclick="showPage('veg')">
-      <span>🥦</span>
-      Veggie Picks
-    </div>
-
-    <div class="tile" onclick="showPage('fibre')">
-      <span>🌾</span>
-      Fibre & Grains
-    </div>
-
-    <div class="tile" onclick="showPage('drinks')">
-      <span>🧃</span>
-      Drinks & Smoothies
-    </div>
-
-    <div class="tile" onclick="showPage('top')">
-      <span>⭐</span>
-      Top Picks
-    </div>
+    <div class="tile" onclick="openList('protein')">🍗 Protein Picks</div>
+    <div class="tile" onclick="openList('veg')">🥦 Veggie Picks</div>
+    <div class="tile" onclick="openList('fibre')">🌾 Fibre & Grains</div>
+    <div class="tile" onclick="openList('drinks')">🧃 Drinks & Smoothies</div>
+    <div class="tile" onclick="openList('top')">⭐ Top Picks</div>
 
   </div>
 </div>
 
-<!-- PROTEIN -->
-<div id="protein" class="page">
-  <div class="list">
-
-    <div class="item">
-      <strong>Chicken Wrap</strong><br>
-      Calories: 520 | Protein: 38g | Carbs: 42g | Fat: 18g
-    </div>
-
-    <div class="item">
-      <strong>Egg Wrap</strong><br>
-      Calories: 420 | Protein: 24g | Carbs: 30g | Fat: 22g
-    </div>
-
-    <div class="item">
-      <strong>Greek Yogurt</strong><br>
-      Calories: 170 | Protein: 15g | Carbs: 6g | Fat: 9g
-    </div>
-
-    <div class="item">
-      <strong>Protein Smoothie</strong><br>
-      Calories: 250 | Protein: 30g | Carbs: 28g | Fat: 4g
-    </div>
-
-    <div class="button back" onclick="showPage('home')">← Home</div>
-  </div>
+<!-- LIST PAGE -->
+<div id="list" class="page">
+  <div class="list" id="listContent"></div>
 </div>
 
-<!-- VEG -->
-<div id="veg" class="page">
-  <div class="list">
-
-    <div class="item">
-      <strong>Caesar Salad</strong><br>
-      Calories: 310 | Protein: 12g | Carbs: 10g | Fat: 22g
-    </div>
-
-    <div class="item">
-      <strong>Veggie Side Salad</strong><br>
-      Calories: 120 | Protein: 4g | Carbs: 10g | Fat: 6g
-    </div>
-
-    <div class="item">
-      <strong>Roasted Vegetables</strong><br>
-      Calories: 180 | Protein: 5g | Carbs: 20g | Fat: 7g
-    </div>
-
-    <div class="item">
-      <strong>Fresh Veggie Bowl</strong><br>
-      Calories: 150 | Protein: 6g | Carbs: 18g | Fat: 5g
-    </div>
-
-    <div class="button back" onclick="showPage('home')">← Home</div>
-  </div>
-</div>
-
-<!-- FIBRE -->
-<div id="fibre" class="page">
-  <div class="list">
-
-    <div class="item">
-      <strong>Protein Oatmeal</strong><br>
-      Calories: 380 | Protein: 20g | Carbs: 55g | Fat: 8g
-    </div>
-
-    <div class="item">
-      <strong>Brown Rice Bowl</strong><br>
-      Calories: 410 | Protein: 10g | Carbs: 72g | Fat: 6g
-    </div>
-
-    <div class="item">
-      <strong>Whole Grain Wrap</strong><br>
-      Calories: 300 | Protein: 12g | Carbs: 45g | Fat: 8g
-    </div>
-
-    <div class="item">
-      <strong>Granola Cup</strong><br>
-      Calories: 260 | Protein: 8g | Carbs: 40g | Fat: 9g
-    </div>
-
-    <div class="button back" onclick="showPage('home')">← Home</div>
-  </div>
-</div>
-
-<!-- DRINKS -->
-<div id="drinks" class="page">
-  <div class="list">
-
-    <div class="item">
-      <strong>Protein Smoothie</strong><br>
-      Calories: 250 | Protein: 30g | Carbs: 28g | Fat: 4g
-    </div>
-
-    <div class="item">
-      <strong>Iced Coffee</strong><br>
-      Calories: 120 | Protein: 5g | Carbs: 18g | Fat: 3g
-    </div>
-
-    <div class="item">
-      <strong>Fruit Smoothie</strong><br>
-      Calories: 210 | Protein: 3g | Carbs: 45g | Fat: 2g
-    </div>
-
-    <div class="item">
-      <strong>Water + Electrolytes</strong><br>
-      Calories: 10 | Protein: 0g | Carbs: 2g | Fat: 0g
-    </div>
-
-    <div class="button back" onclick="showPage('home')">← Home</div>
-  </div>
-</div>
-
-<!-- TOP PICKS -->
-<div id="top" class="page">
-  <div class="list">
-
-    <div class="item">
-      <strong>High Protein Combo</strong><br>
-      Chicken Wrap + Protein Smoothie<br>
-      Calories: 770 | Protein: 68g | Carbs: 70g | Fat: 22g
-    </div>
-
-    <div class="item">
-      <strong>Balanced Meal</strong><br>
-      Veggie Bowl + Chicken Wrap<br>
-      Calories: 670 | Protein: 44g | Carbs: 60g | Fat: 25g
-    </div>
-
-    <div class="item">
-      <strong>Light & Fresh</strong><br>
-      Greek Yogurt + Salad<br>
-      Calories: 480 | Protein: 27g | Carbs: 16g | Fat: 15g
-    </div>
-
-    <div class="item">
-      <strong>Energy Boost</strong><br>
-      Oatmeal + Smoothie<br>
-      Calories: 630 | Protein: 50g | Carbs: 83g | Fat: 12g
-    </div>
-
-    <div class="button back" onclick="showPage('home')">← Home</div>
+<!-- DETAILS PAGE -->
+<div id="details" class="page">
+  <div class="card">
+    <div class="box" id="detailsContent"></div>
+    <div class="back" onclick="goHome()">← Back to Home</div>
   </div>
 </div>
 
 <script>
-let inactivityTimer;
+let data = {
 
-function showPage(id) {
+  protein: [
+    {
+      name: "Chicken Wrap",
+      calories: 520,
+      protein: "38g",
+      carbs: "42g",
+      fat: "18g",
+      location: "Lunch Station"
+    },
+    {
+      name: "Egg Wrap",
+      calories: 420,
+      protein: "24g",
+      carbs: "30g",
+      fat: "22g",
+      location: "Breakfast Station"
+    },
+    {
+      name: "Greek Yogurt",
+      calories: 170,
+      protein: "15g",
+      carbs: "6g",
+      fat: "9g",
+      location: "Grab & Go"
+    }
+  ],
+
+  veg: [
+    {
+      name: "Caesar Salad",
+      calories: 310,
+      protein: "12g",
+      carbs: "10g",
+      fat: "22g",
+      location: "Salad Bar"
+    },
+    {
+      name: "Veggie Bowl",
+      calories: 150,
+      protein: "6g",
+      carbs: "18g",
+      fat: "5g",
+      location: "Hot Station"
+    }
+  ],
+
+  fibre: [
+    {
+      name: "Protein Oatmeal",
+      calories: 380,
+      protein: "20g",
+      carbs: "55g",
+      fat: "8g",
+      location: "Breakfast Station"
+    },
+    {
+      name: "Brown Rice Bowl",
+      calories: 410,
+      protein: "10g",
+      carbs: "72g",
+      fat: "6g",
+      location: "Hot Station"
+    }
+  ],
+
+  drinks: [
+    {
+      name: "Protein Smoothie",
+      calories: 250,
+      protein: "30g",
+      carbs: "28g",
+      fat: "4g",
+      location: "Drink Station"
+    },
+    {
+      name: "Iced Coffee",
+      calories: 120,
+      protein: "5g",
+      carbs: "18g",
+      fat: "3g",
+      location: "Drink Station"
+    }
+  ],
+
+  top: [
+    {
+      name: "High Protein Combo",
+      calories: 770,
+      protein: "68g",
+      carbs: "70g",
+      fat: "22g",
+      location: "Combo Meal"
+    }
+  ]
+};
+
+function show(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  resetTimer();
+  document.getElementById(page).classList.add('active');
 }
 
-function goToWelcome() {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('welcome').classList.add('active');
+function openList(category) {
+  let html = "";
+  data[category].forEach((item, i) => {
+    html += `<div class="item" onclick="openDetails('${category}',${i})">
+      ${item.name}
+    </div>`;
+  });
+
+  document.getElementById("listContent").innerHTML = html;
+  show('list');
 }
 
-function resetTimer() {
-  clearTimeout(inactivityTimer);
-  inactivityTimer = setTimeout(() => {
-    goToWelcome();
-  }, 45000);
+function openDetails(category, index) {
+  let item = data[category][index];
+
+  document.getElementById("detailsContent").innerHTML = `
+    <h2>${item.name}</h2><br>
+
+    Calories: ${item.calories}<br>
+    Protein: ${item.protein}<br>
+    Carbs: ${item.carbs}<br>
+    Fat: ${item.fat}<br><br>
+
+    📍 Location: ${item.location}
+  `;
+
+  show('details');
 }
 
-document.addEventListener('click', resetTimer);
-document.addEventListener('touchstart', resetTimer);
-
-resetTimer();
+function goHome() {
+  show('home');
+}
 </script>
 
 </body>
