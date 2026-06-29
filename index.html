@@ -134,18 +134,19 @@ body::before{
 }
 
 /* ========================= */
-/* 🔻 BOTTOM BAR EDGE FIX */
+/* 🔻 BOTTOM BAR */
 /* ========================= */
 
 .bottom-bar{
   position:fixed;
-  bottom:25px;   /* space from bottom */
-
+  bottom:25px;
   left:0;
   right:0;
 
   display:flex;
   justify-content:space-between;
+
+  padding:0 0;
 
   z-index:1000;
 }
@@ -172,7 +173,7 @@ body::before{
   background:#ffffff;
   color:#003A70;
 
-  border-radius:0 16px 16px 0; /* flush left edge */
+  border-radius:0 16px 16px 0;
 }
 
 .back-btn:hover{
@@ -184,12 +185,17 @@ body::before{
 .logo-btn{
   background:#ffffff;
 
-  border-radius:16px 0 0 16px; /* flush right edge */
+  border-radius:16px 0 0 16px;
 }
 
 .logo-btn img{
   width:140px;
   display:block;
+}
+
+/* hidden on welcome */
+.hide{
+  display:none !important;
 }
 
 </style>
@@ -279,6 +285,7 @@ body::before{
 <script>
 
 let currentPage = "welcome";
+let timer;
 
 const bottomBar = document.getElementById("bottomBar");
 
@@ -293,6 +300,7 @@ function showPage(id){
   currentPage = id;
 
   updateUI();
+  resetTimer();
 }
 
 function goBack(){
@@ -303,16 +311,34 @@ function goBack(){
   }
 }
 
-/* hide on welcome */
+/* ========================= */
+/* ⏱️ 20 SECOND TIMEOUT */
+/* ========================= */
+
+function resetTimer(){
+  clearTimeout(timer);
+
+  timer = setTimeout(()=>{
+    showPage("welcome");
+  }, 20000); // 🔥 20 seconds
+}
+
+/* reset on interaction */
+["click","touchstart","mousemove","keydown"].forEach(evt=>{
+  document.addEventListener(evt, resetTimer);
+});
+
+/* hide bottom bar on welcome */
 function updateUI(){
   if(currentPage === "welcome"){
-    bottomBar.style.display = "none";
+    bottomBar.classList.add("hide");
   } else {
-    bottomBar.style.display = "flex";
+    bottomBar.classList.remove("hide");
   }
 }
 
 updateUI();
+resetTimer();
 
 </script>
 
