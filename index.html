@@ -34,17 +34,26 @@ body::before{
   z-index:-1;
 }
 
-/* LOGO */
+/* LOGO TAB (NEW) */
 .logo{
   position:fixed;
-  top:18px;
-  right:30px;
-  width:220px;
+  top:12px;
+  right:12px;
+  width:110px;
   z-index:1000;
+
+  background:rgba(255,255,255,0.85);
+  padding:10px 12px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+
+  backdrop-filter: blur(6px);
 }
 
 .logo img{
   width:100%;
+  height:auto;
+  display:block;
 }
 
 /* PAGE SYSTEM */
@@ -73,7 +82,7 @@ body::before{
 }
 
 .welcome-title{
-  font-size:130px;   /* 🔥 BIGGER */
+  font-size:130px;
   font-weight:bold;
   line-height:1.05;
 }
@@ -82,10 +91,10 @@ body::before{
   font-size:44px;
   margin-top:25px;
   color:#e6e6e6;
-  animation: blink 1.2s infinite; /* 🔥 BLINK EFFECT */
+  animation: blink 1.2s infinite;
 }
 
-/* BLINK ANIMATION */
+/* BLINK */
 @keyframes blink {
   0% { opacity: 1; }
   50% { opacity: 0.2; }
@@ -172,7 +181,7 @@ body::before{
 
 <body>
 
-<!-- LOGO -->
+<!-- LOGO TAB -->
 <div class="logo">
     <img src="logo.png" alt="Sodexo Logo">
 </div>
