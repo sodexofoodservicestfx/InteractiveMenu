@@ -69,16 +69,14 @@ body::before{
   box-shadow:0 4px 18px rgba(0,0,0,0.2);
 }
 
-/* ================= WELCOME ================= */
+/* ================= WELCOME (FIXED TOP ALIGN) ================= */
 
 #welcome{
   display:flex;
   justify-content:flex-start;
   align-items:flex-start;
 
-  padding-top:120px;
-
-  text-align:center;
+  padding:140px 60px;
 
   color:white;
 
@@ -99,7 +97,7 @@ body::before{
 
 .welcome-sub{
   font-size:44px;
-  margin-top:30px;
+  margin-top:25px;
   opacity:0.95;
 }
 
@@ -124,7 +122,7 @@ body::before{
   gap:35px;
 }
 
-/* ================= BIG TOUCH CARDS ================= */
+/* ================= CARDS (BIG TOUCH) ================= */
 
 .card{
   display:flex;
@@ -138,7 +136,6 @@ body::before{
   box-shadow:0 12px 28px rgba(0,0,0,0.14);
   cursor:pointer;
 
-  transition:0.2s ease;
   min-height:180px;
 }
 
@@ -197,8 +194,8 @@ body::before{
   cursor:pointer;
 }
 
-button, .card {
-  touch-action: manipulation;
+button, .card{
+  touch-action:manipulation;
 }
 
 </style>
@@ -279,7 +276,10 @@ button, .card {
 
 <div id="fibre" class="page">
   <div class="topbar">Add Fibre</div>
-  <div class="blank">Coming Soon</div>
+  <div class="blank">
+    <img src="https://images.unsplash.com/photo-1604908554165-5f1a9d1b5c2d?auto=format&fit=crop&w=1200&q=80"
+         style="width:80%; border-radius:30px;">
+  </div>
   <button class="back" onclick="showPage('home')">← Back</button>
 </div>
 
@@ -304,7 +304,7 @@ function showPage(id){
   resetTimer();
 }
 
-/* ================= AUTO RESET (T972 KIOSK) ================= */
+/* ================= 30 SECOND RESET ================= */
 
 function resetTimer(){
 
@@ -318,7 +318,7 @@ function resetTimer(){
       showPage("welcome");
     }, 10000);
 
-  }, 60000);
+  }, 30000); // ✅ 30 SECONDS
 
 }
 
