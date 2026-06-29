@@ -2,231 +2,201 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Meal Hall - Build Your Plate</title>
+<title>StFX Meal Hall</title>
 
 <style>
 
+/* ================= BASE ================= */
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
 }
 
 html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#f7f7f2;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#f6f3ee; /* warm food tone */
 }
 
-/* ---------------- Background ---------------- */
+/* ================= FOOD-THEMED BACKGROUND ================= */
 
-body{
-    background:
-    radial-gradient(circle at 20% 20%, rgba(124,179,66,.08) 0 80px, transparent 81px),
-    radial-gradient(circle at 80% 70%, rgba(76,175,80,.08) 0 100px, transparent 101px),
-    radial-gradient(circle at 70% 25%, rgba(255,193,7,.05) 0 70px, transparent 71px),
-    #f7f7f2;
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(122,30,44,0.08), transparent 300px),
+    radial-gradient(circle at 80% 70%, rgba(76,175,80,0.06), transparent 350px),
+    radial-gradient(circle at 50% 50%, rgba(255,193,7,0.05), transparent 400px);
+
+  z-index:-1;
 }
 
-/* ---------------- Pages ---------------- */
+/* ================= PAGE SYSTEM ================= */
 
 .page{
-    position:absolute;
-    width:100%;
-    height:100%;
-    opacity:0;
-    pointer-events:none;
-    transition:.4s;
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  pointer-events:none;
+  transition:0.4s ease;
 }
 
 .page.active{
-    opacity:1;
-    pointer-events:auto;
+  opacity:1;
+  pointer-events:auto;
 }
 
-/* ---------------- Top Bar ---------------- */
+/* ================= TOP BAR ================= */
 
 .topbar{
+  height:100px;
+  background:#7A1E2C; /* StFX maroon */
+  color:white;
 
-    height:90px;
-    background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  font-size:40px;
+  font-weight:bold;
 
-    font-size:34px;
-    font-weight:bold;
-
-    color:#2E5E2E;
-
-    box-shadow:0 3px 18px rgba(0,0,0,.08);
+  box-shadow:0 4px 18px rgba(0,0,0,0.2);
 }
 
-/* ---------------- Welcome ---------------- */
+/* ================= WELCOME ================= */
 
 #welcome{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  cursor:pointer;
 
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-cursor:pointer;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("images/welcome.jpg");
 
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-url("https://imgur.com/a/WU8IvP4");
+  background-size:cover;
+  background-position:center;
 
-background-size:cover;
-background-position:center;
-
-color:white;
-
-}
-
-.welcome-box{
-
-padding:40px;
-
+  color:white;
 }
 
 .welcome-title{
-
-font-size:78px;
-font-weight:bold;
-margin-bottom:20px;
-
+  font-size:90px;
+  font-weight:bold;
 }
 
 .welcome-sub{
-
-font-size:34px;
-opacity:.9;
-
+  font-size:36px;
+  opacity:0.9;
+  margin-top:20px;
 }
 
-/* ---------------- Home ---------------- */
+/* ================= HOME ================= */
 
 .home{
-
-display:flex;
-justify-content:center;
-align-items:center;
-height:calc(100% - 90px);
-
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100%;
 }
 
 .menu{
-
-width:900px;
-max-width:90%;
-
-display:flex;
-flex-direction:column;
-gap:30px;
-
+  width:1000px;
+  max-width:92%;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
 }
 
+/* ================= CARDS ================= */
+
 .card{
+  display:flex;
+  align-items:center;
+  gap:30px;
 
-background:white;
+  background:white;
+  border-radius:30px;
+  padding:25px;
 
-border-radius:30px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+  cursor:pointer;
 
-padding:35px;
-
-display:flex;
-
-align-items:center;
-
-gap:30px;
-
-cursor:pointer;
-
-transition:.25s;
-
-box-shadow:0 12px 28px rgba(0,0,0,.10);
-
+  transition:0.25s;
 }
 
 .card:hover{
-
-transform:translateY(-6px);
-
+  transform:scale(1.02);
 }
 
-.icon{
-
-font-size:60px;
-
+.card img{
+  width:160px;
+  height:120px;
+  object-fit:cover;
+  border-radius:20px;
 }
+
+/* ================= TEXT ================= */
 
 .text h2{
-
-font-size:38px;
-margin-bottom:10px;
-color:#2E5E2E;
-
+  font-size:44px;
+  color:#7A1E2C;
 }
 
 .text p{
-
-font-size:24px;
-color:#666;
-
+  font-size:26px;
+  color:#555;
 }
 
-/* ---------------- Blank Pages ---------------- */
+/* ================= BLANK PAGES ================= */
 
 .blank{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-display:flex;
-justify-content:center;
-align-items:center;
-height:calc(100% - 90px);
-
-font-size:46px;
-font-weight:bold;
-color:#2E5E2E;
-
+  font-size:60px;
+  font-weight:bold;
+  color:#7A1E2C;
 }
+
+/* ================= BACK BUTTON ================= */
 
 .back{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
 
-position:absolute;
+  background:#7A1E2C;
+  color:white;
 
-bottom:40px;
+  padding:25px 70px;
+  border:none;
+  border-radius:25px;
 
-left:50%;
-
-transform:translateX(-50%);
-
-padding:20px 60px;
-
-border:none;
-
-border-radius:20px;
-
-background:#4CAF50;
-
-color:white;
-
-font-size:28px;
-
-cursor:pointer;
-
-transition:.2s;
-
+  font-size:30px;
+  cursor:pointer;
 }
 
-.back:hover{
+/* ================= TOUCH FEEL ================= */
 
-background:#3f9443;
-
+.card:active,
+.back:active{
+  transform:scale(0.98);
 }
 
 </style>
@@ -234,148 +204,74 @@ background:#3f9443;
 
 <body>
 
-<!-- Welcome -->
-
+<!-- ================= WELCOME ================= -->
 <div id="welcome" class="page active" onclick="showPage('home')">
 
-<div class="welcome-box">
-
-<div class="welcome-title">
-🍽️ Build Your Plate
-</div>
-
-<div class="welcome-sub">
-Tap Anywhere to Begin
-</div>
+  <div>
+    <div class="welcome-title">🍽️ StFX Meal Hall</div>
+    <div class="welcome-sub">Tap Anywhere to Begin</div>
+  </div>
 
 </div>
 
-</div>
-
-<!-- Home -->
-
+<!-- ================= HOME ================= -->
 <div id="home" class="page">
 
-<div class="topbar">
-Meal Hall
-</div>
+  <div class="topbar">Build Your Plate</div>
 
-<div class="home">
+  <div class="home">
 
-<div class="menu">
+    <div class="menu">
 
-<div class="card" onclick="showPage('protein')">
+      <div class="card" onclick="showPage('protein')">
+        <img src="images/protein.jpg">
+        <div class="text">
+          <h2>Add Protein</h2>
+          <p>Chicken, eggs, tofu & more</p>
+        </div>
+      </div>
 
-<div class="icon">🥩</div>
+      <div class="card" onclick="showPage('veg')">
+        <img src="images/vegetables.jpg">
+        <div class="text">
+          <h2>Add Vegetables</h2>
+          <p>Fresh, healthy greens daily</p>
+        </div>
+      </div>
 
-<div class="text">
+      <div class="card" onclick="showPage('fibre')">
+        <img src="images/fibre.jpg">
+        <div class="text">
+          <h2>Add Fibre</h2>
+          <p>Rice, grains & whole foods</p>
+        </div>
+      </div>
 
-<h2>Add Protein</h2>
+    </div>
 
-<p>Choose from today's protein-rich options.</p>
-
-</div>
-
-</div>
-
-<div class="card" onclick="showPage('vegetables')">
-
-<div class="icon">🥦</div>
-
-<div class="text">
-
-<h2>Add Vegetables</h2>
-
-<p>Add fresh vegetables to build a balanced meal.</p>
-
-</div>
-
-</div>
-
-<div class="card" onclick="showPage('fibre')">
-
-<div class="icon">🌾</div>
-
-<div class="text">
-
-<h2>Add Fibre</h2>
-
-<p>Whole grains, rice and other fibre-rich foods.</p>
+  </div>
 
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Protein -->
-
+<!-- ================= PROTEIN ================= -->
 <div id="protein" class="page">
-
-<div class="topbar">
-🥩 Add Protein
+  <div class="topbar">Add Protein</div>
+  <div class="blank">Coming Soon</div>
+  <button class="back" onclick="showPage('home')">Back</button>
 </div>
 
-<div class="blank">
-
-Coming Soon
-
+<!-- ================= VEG ================= -->
+<div id="veg" class="page">
+  <div class="topbar">Add Vegetables</div>
+  <div class="blank">Coming Soon</div>
+  <button class="back" onclick="showPage('home')">Back</button>
 </div>
 
-<button class="back" onclick="showPage('home')">
-
-← Back
-
-</button>
-
-</div>
-
-<!-- Vegetables -->
-
-<div id="vegetables" class="page">
-
-<div class="topbar">
-🥦 Add Vegetables
-</div>
-
-<div class="blank">
-
-Coming Soon
-
-</div>
-
-<button class="back" onclick="showPage('home')">
-
-← Back
-
-</button>
-
-</div>
-
-<!-- Fibre -->
-
+<!-- ================= FIBRE ================= -->
 <div id="fibre" class="page">
-
-<div class="topbar">
-🌾 Add Fibre
-</div>
-
-<div class="blank">
-
-Coming Soon
-
-</div>
-
-<button class="back" onclick="showPage('home')">
-
-← Back
-
-</button>
-
+  <div class="topbar">Add Fibre</div>
+  <div class="blank">Coming Soon</div>
+  <button class="back" onclick="showPage('home')">Back</button>
 </div>
 
 <script>
@@ -384,31 +280,27 @@ let timer;
 
 function showPage(id){
 
-document.querySelectorAll(".page").forEach(page=>{
-page.classList.remove("active");
-});
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
 
-document.getElementById(id).classList.add("active");
+  document.getElementById(id).classList.add("active");
 
-resetTimer();
-
+  resetTimer();
 }
 
 function resetTimer(){
 
-clearTimeout(timer);
+  clearTimeout(timer);
 
-timer=setTimeout(function(){
-
-showPage("welcome");
-
-},60000);
+  timer = setTimeout(()=>{
+    showPage("welcome");
+  },60000);
 
 }
 
-document.addEventListener("click",resetTimer);
-
-document.addEventListener("touchstart",resetTimer);
+document.addEventListener("click", resetTimer);
+document.addEventListener("touchstart", resetTimer);
 
 resetTimer();
 
