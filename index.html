@@ -66,7 +66,7 @@ body::before{
   box-shadow:0 4px 18px rgba(0,0,0,0.2);
 }
 
-/* ================= WELCOME (FIXED CENTER) ================= */
+/* ================= WELCOME (CENTERED) ================= */
 
 #welcome{
   display:flex;
@@ -99,15 +99,7 @@ body::before{
   opacity:0.95;
 }
 
-/* ================= HOME ================= */
-
-.home{
-  display:flex;
-  justify-content:flex-start;
-  align-items:flex-start;
-  padding-top:20px;
-  height:100%;
-}
+/* ================= MENU ================= */
 
 .menu{
   width:1100px;
@@ -117,6 +109,8 @@ body::before{
   display:flex;
   flex-direction:column;
   gap:35px;
+
+  padding-top:140px;
 }
 
 /* ================= CARDS ================= */
@@ -166,9 +160,20 @@ body::before{
   display:flex;
   align-items:center;
   justify-content:center;
+  flex-direction:column;
+  padding:30px;
 }
 
-/* ================= BACK + HOME BUTTON ================= */
+/* ================= FIBRE IMAGE ================= */
+
+.fibre-img{
+  width:90%;
+  max-width:1200px;
+  border-radius:30px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* ================= BUTTONS ================= */
 
 .btn{
   position:absolute;
@@ -190,21 +195,6 @@ body::before{
   transform:translateX(-50%);
 }
 
-.homebtn{
-  right:40px;
-  bottom:40px;
-  padding:22px 60px;
-  font-size:28px;
-}
-
-/* ================= BLANK ================= */
-
-.blank{
-  font-size:70px;
-  font-weight:bold;
-  color:#7A1E2C;
-}
-
 /* touch fix */
 button, .card {
   touch-action: manipulation;
@@ -216,7 +206,7 @@ button, .card {
 <body>
 
 <!-- ================= WELCOME ================= -->
-<div id="welcome" class="page active" onclick="showPage('home')">
+<div id="welcome" class="page active" onclick="showPage('menu')">
 
   <div>
     <div class="welcome-title">Welcome to Meal Hall</div>
@@ -225,47 +215,41 @@ button, .card {
 
 </div>
 
-<!-- ================= HOME ================= -->
-<div id="home" class="page">
+<!-- ================= MENU (NO HOME SCREEN) ================= -->
+<div id="menu" class="page">
 
-  <div class="topbar">Build Your Plate</div>
+  <div class="menu">
 
-  <div class="home">
-
-    <div class="menu">
-
-      <div class="card" onclick="showPage('protein')">
-        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80">
-        <div class="text">
-          <h2>Add Protein</h2>
-          <p>Chicken, eggs, tofu & more</p>
-        </div>
+    <div class="card" onclick="showPage('protein')">
+      <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80">
+      <div class="text">
+        <h2>Add Protein</h2>
+        <p>Chicken, eggs, tofu & more</p>
       </div>
+    </div>
 
-      <div class="card" onclick="showPage('veg')">
-        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80">
-        <div class="text">
-          <h2>Add Vegetables</h2>
-          <p>Fresh greens & salads</p>
-        </div>
+    <div class="card" onclick="showPage('veg')">
+      <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80">
+      <div class="text">
+        <h2>Add Vegetables</h2>
+        <p>Fresh greens & salads</p>
       </div>
+    </div>
 
-      <div class="card" onclick="showPage('fibre')">
-        <img src="https://images.unsplash.com/photo-1604908554165-5f1a9d1b5c2d?auto=format&fit=crop&w=800&q=80">
-        <div class="text">
-          <h2>Add Fibre</h2>
-          <p>Rice, grains & whole foods</p>
-        </div>
+    <div class="card" onclick="showPage('fibre')">
+      <img src="https://images.unsplash.com/photo-1604908554165-5f1a9d1b5c2d?auto=format&fit=crop&w=800&q=80">
+      <div class="text">
+        <h2>Add Fibre</h2>
+        <p>Rice, grains & whole foods</p>
       </div>
+    </div>
 
-      <div class="card" onclick="showPage('creative')">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80">
-        <div class="text">
-          <h2>Get Creative</h2>
-          <p>Build your own custom meal</p>
-        </div>
+    <div class="card" onclick="showPage('creative')">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80">
+      <div class="text">
+        <h2>Get Creative</h2>
+        <p>Build your own custom meal</p>
       </div>
-
     </div>
 
   </div>
@@ -276,38 +260,44 @@ button, .card {
 
 <div id="protein" class="page">
   <div class="topbar">Add Protein</div>
+
   <div class="page-content">
-    <div class="blank">Coming Soon</div>
+    <div style="font-size:70px;color:#7A1E2C;font-weight:bold;">Coming Soon</div>
   </div>
-  <button class="btn back" onclick="showPage('home')">← Back</button>
-  <button class="btn homebtn" onclick="showPage('home')">Home</button>
+
+  <button class="btn back" onclick="showPage('menu')">← Back</button>
 </div>
 
 <div id="veg" class="page">
   <div class="topbar">Add Vegetables</div>
+
   <div class="page-content">
-    <div class="blank">Coming Soon</div>
+    <div style="font-size:70px;color:#7A1E2C;font-weight:bold;">Coming Soon</div>
   </div>
-  <button class="btn back" onclick="showPage('home')">← Back</button>
-  <button class="btn homebtn" onclick="showPage('home')">Home</button>
+
+  <button class="btn back" onclick="showPage('menu')">← Back</button>
 </div>
 
+<!-- ================= FIBRE WITH IMAGE ================= -->
 <div id="fibre" class="page">
   <div class="topbar">Add Fibre</div>
+
   <div class="page-content">
-    <div class="blank">Coming Soon</div>
+    <img class="fibre-img"
+         src="https://images.unsplash.com/photo-1604908554165-5f1a9d1b5c2d?auto=format&fit=crop&w=1400&q=80">
   </div>
-  <button class="btn back" onclick="showPage('home')">← Back</button>
-  <button class="btn homebtn" onclick="showPage('home')">Home</button>
+
+  <button class="btn back" onclick="showPage('menu')">← Back</button>
 </div>
 
 <div id="creative" class="page">
   <div class="topbar">Get Creative</div>
+
   <div class="page-content">
-    <div class="blank">Coming Soon</div>
+    <div style="font-size:70px;color:#7A1E2C;font-weight:bold;">Coming Soon</div>
   </div>
-  <button class="btn back" onclick="showPage('home')">← Back</button>
-  <button class="btn homebtn" onclick="showPage('home')">Home</button>
+
+  <button class="btn back" onclick="showPage('menu')">← Back</button>
 </div>
 
 <script>
@@ -333,7 +323,7 @@ function resetTimer(){
 
   timer = setTimeout(()=>{
 
-    showPage("home");
+    showPage("menu");
 
     timer = setTimeout(()=>{
       showPage("welcome");
