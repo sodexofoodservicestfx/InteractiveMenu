@@ -17,7 +17,7 @@ html,body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#f4f6f8;
+  background:#e9edf2; /* slightly darker = less white feel */
 }
 
 /* BACKGROUND */
@@ -26,8 +26,9 @@ body::before{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,94,184,0.10), transparent 400px),
-    radial-gradient(circle at 80% 70%, rgba(228,0,43,0.08), transparent 450px);
+    radial-gradient(circle at 20% 20%, rgba(0,94,184,0.12), transparent 420px),
+    radial-gradient(circle at 80% 70%, rgba(228,0,43,0.10), transparent 450px),
+    linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35));
   z-index:-1;
 }
 
@@ -104,14 +105,15 @@ body::before{
 .card{
   display:flex;
   align-items:center;
-  background:white;
+  background:#ffffff;
   border-radius:34px;
   padding:45px 50px;
-  box-shadow:0 12px 28px rgba(0,0,0,0.12);
+  box-shadow:0 18px 40px rgba(0,0,0,0.18);
   cursor:pointer;
   min-height:180px;
   transition:0.2s ease;
-  border-left:10px solid #E4002B; /* Sodexo red accent */
+
+  border-left:12px solid #E4002B; /* Sodexo red accent */
 }
 
 .card:hover{
@@ -119,8 +121,9 @@ body::before{
 }
 
 .text h2{
-  font-size:56px;
-  color:#005EB8; /* Sodexo blue */
+  font-size:58px;
+  color:#003A70; /* deeper Sodexo-style blue */
+  font-weight:800;
 }
 
 .text p{
@@ -137,9 +140,9 @@ body::before{
 }
 
 .coming{
-  font-size:70px;
+  font-size:72px;
   font-weight:bold;
-  color:#005EB8;
+  color:#003A70;
 }
 
 /* BUTTON */
@@ -148,7 +151,7 @@ body::before{
   bottom:50px;
   left:50%;
   transform:translateX(-50%);
-  background:#005EB8;
+  background:#003A70;
   color:white;
   padding:28px 90px;
   border:none;
@@ -160,6 +163,7 @@ body::before{
 
 .btn:hover{
   background:#E4002B;
+  color:white;
 }
 
 </style>
