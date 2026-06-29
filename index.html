@@ -17,18 +17,20 @@ html,body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#e9edf2; /* slightly darker = less white feel */
 }
 
-/* BACKGROUND */
+/* BACKGROUND IMAGE */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,94,184,0.12), transparent 420px),
-    radial-gradient(circle at 80% 70%, rgba(228,0,43,0.10), transparent 450px),
-    linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35));
+    linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
+    url("Morrison%20Hall(1).jpg");
+  background-size:cover;
+  background-position:center;
+  filter: blur(2px);
+  transform: scale(1.05);
   z-index:-1;
 }
 
@@ -43,7 +45,6 @@ body::before{
 
 .logo img{
   width:100%;
-  height:auto;
 }
 
 /* PAGE SYSTEM */
@@ -68,26 +69,27 @@ body::before{
   text-align:center;
   height:100%;
   color:white;
-
-  background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url("Morrison%20Hall(1).jpg");
-
-  background-size:cover;
-  background-position:center;
   cursor:pointer;
 }
 
 .welcome-title{
-  font-size:100px;
+  font-size:130px;   /* 🔥 BIGGER */
   font-weight:bold;
-  line-height:1.1;
+  line-height:1.05;
 }
 
 .welcome-sub{
   font-size:44px;
   margin-top:25px;
   color:#e6e6e6;
+  animation: blink 1.2s infinite; /* 🔥 BLINK EFFECT */
+}
+
+/* BLINK ANIMATION */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
 }
 
 /* MENU */
@@ -105,15 +107,14 @@ body::before{
 .card{
   display:flex;
   align-items:center;
-  background:#ffffff;
+  background:rgba(255,255,255,0.95);
   border-radius:34px;
   padding:45px 50px;
-  box-shadow:0 18px 40px rgba(0,0,0,0.18);
+  box-shadow:0 18px 40px rgba(0,0,0,0.35);
   cursor:pointer;
   min-height:180px;
   transition:0.2s ease;
-
-  border-left:12px solid #E4002B; /* Sodexo red accent */
+  border-left:12px solid #E4002B;
 }
 
 .card:hover{
@@ -122,13 +123,13 @@ body::before{
 
 .text h2{
   font-size:58px;
-  color:#003A70; /* deeper Sodexo-style blue */
+  color:#003A70;
   font-weight:800;
 }
 
 .text p{
   font-size:30px;
-  color:#555;
+  color:#444;
 }
 
 /* PAGE CONTENT */
@@ -142,7 +143,8 @@ body::before{
 .coming{
   font-size:72px;
   font-weight:bold;
-  color:#003A70;
+  color:#ffffff;
+  text-shadow:0 4px 20px rgba(0,0,0,0.6);
 }
 
 /* BUTTON */
@@ -163,7 +165,6 @@ body::before{
 
 .btn:hover{
   background:#E4002B;
-  color:white;
 }
 
 </style>
@@ -182,7 +183,9 @@ body::before{
     <div class="welcome-title">
       Welcome to<br>Meal Hall
     </div>
-    <div class="welcome-sub">Click to enhance your meal</div>
+    <div class="welcome-sub">
+      Click to enhance your meal
+    </div>
   </div>
 </div>
 
@@ -225,33 +228,25 @@ body::before{
 
 <!-- PROTEIN -->
 <div id="protein" class="page">
-  <div class="page-content">
-    <div class="coming">Coming Soon</div>
-  </div>
+  <div class="page-content"><div class="coming">Coming Soon</div></div>
   <button class="btn" onclick="showPage('menu')">Home</button>
 </div>
 
 <!-- VEG -->
 <div id="veg" class="page">
-  <div class="page-content">
-    <div class="coming">Coming Soon</div>
-  </div>
+  <div class="page-content"><div class="coming">Coming Soon</div></div>
   <button class="btn" onclick="showPage('menu')">Home</button>
 </div>
 
 <!-- FIBRE -->
 <div id="fibre" class="page">
-  <div class="page-content">
-    <div class="coming">Coming Soon</div>
-  </div>
+  <div class="page-content"><div class="coming">Coming Soon</div></div>
   <button class="btn" onclick="showPage('menu')">Home</button>
 </div>
 
 <!-- CREATIVE -->
 <div id="creative" class="page">
-  <div class="page-content">
-    <div class="coming">Coming Soon</div>
-  </div>
+  <div class="page-content"><div class="coming">Coming Soon</div></div>
   <button class="btn" onclick="showPage('menu')">Home</button>
 </div>
 
