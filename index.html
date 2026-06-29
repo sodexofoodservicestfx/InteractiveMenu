@@ -134,58 +134,52 @@ body::before{
 }
 
 /* ========================= */
-/* 🔘 UNIFIED TAB STYLE */
+/* 🔻 BOTTOM BAR LAYOUT */
 /* ========================= */
-.tab{
+
+.bottom-bar{
   position:fixed;
-  bottom:0;
-
-  width:200px;
-  height:80px;
-
-  background:#003A70;
-  color:white;
-
+  bottom:25px;          /* 👈 space from bottom */
+  left:0;
+  width:100%;
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
+  padding:0 25px;
+  z-index:1000;
+}
 
-  font-size:28px;
+/* BACK BUTTON */
+.back-btn{
+  background:#ffffff;   /* matches logo style */
+  color:#003A70;
+  font-size:26px;
   font-weight:bold;
 
+  padding:18px 40px;
+  border-radius:16px;
+
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
   cursor:pointer;
-  z-index:1000;
-
-  box-shadow:0 -6px 18px rgba(0,0,0,0.3);
 }
 
-/* BACK TAB (LEFT) */
-.back-tab{
-  left:0;
-  border-radius:0 18px 0 0;
-}
-
-.back-tab:hover{
+.back-btn:hover{
   background:#E4002B;
+  color:white;
 }
 
-/* LOGO TAB (RIGHT) */
-.logo-tab{
-  right:0;
+/* LOGO */
+.logo-box{
   background:#ffffff;
-  border-radius:18px 0 0 0;
-  box-shadow:0 -6px 18px rgba(0,0,0,0.25);
+  padding:14px 18px;
+  border-radius:16px;
+
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
 }
 
-/* make logo fit inside tab */
-.logo-tab img{
+.logo-box img{
   width:140px;
-  height:auto;
-}
-
-/* HIDE TABS ON WELCOME */
-.hide-ui{
-  display:none !important;
+  display:block;
 }
 
 </style>
@@ -193,14 +187,19 @@ body::before{
 
 <body>
 
-<!-- BACK TAB -->
-<div id="backTab" class="tab back-tab" onclick="goBack()">
-  ⟵ Back
-</div>
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
 
-<!-- LOGO TAB -->
-<div id="logoTab" class="tab logo-tab">
-  <img src="logo.png" alt="Sodexo Logo">
+  <!-- BACK -->
+  <div class="back-btn" onclick="goBack()">
+    ⟵ Back
+  </div>
+
+  <!-- LOGO -->
+  <div class="logo-box">
+    <img src="logo.png" alt="Sodexo Logo">
+  </div>
+
 </div>
 
 <!-- WELCOME -->
@@ -273,9 +272,6 @@ body::before{
 
 let currentPage = "welcome";
 
-const backTab = document.getElementById("backTab");
-const logoTab = document.getElementById("logoTab");
-
 function showPage(id){
 
   document.querySelectorAll(".page").forEach(p=>{
@@ -285,8 +281,6 @@ function showPage(id){
   document.getElementById(id).classList.add("active");
 
   currentPage = id;
-
-  updateUI();
 }
 
 function goBack(){
@@ -296,19 +290,6 @@ function goBack(){
     showPage("menu");
   }
 }
-
-/* SHOW/HIDE TABS ON WELCOME */
-function updateUI(){
-  if(currentPage === "welcome"){
-    backTab.classList.add("hide-ui");
-    logoTab.classList.add("hide-ui");
-  } else {
-    backTab.classList.remove("hide-ui");
-    logoTab.classList.remove("hide-ui");
-  }
-}
-
-updateUI();
 
 </script>
 
