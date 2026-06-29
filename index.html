@@ -42,6 +42,9 @@ body::before{
   opacity:0;
   pointer-events:none;
   transition:0.35s ease;
+
+  display:flex;
+  flex-direction:column;
 }
 
 .page.active{
@@ -52,7 +55,7 @@ body::before{
 /* ================= TOP BAR ================= */
 
 .topbar{
-  height:100px;
+  height:110px;
   background:#7A1E2C;
   color:white;
 
@@ -60,7 +63,7 @@ body::before{
   align-items:center;
   justify-content:center;
 
-  font-size:42px;
+  font-size:46px;
   font-weight:bold;
 
   box-shadow:0 4px 18px rgba(0,0,0,0.2);
@@ -70,8 +73,11 @@ body::before{
 
 #welcome{
   display:flex;
-  justify-content:center;
-  align-items:center;
+  justify-content:flex-start;
+  align-items:flex-start;
+
+  padding-top:120px;
+
   text-align:center;
 
   color:white;
@@ -87,48 +93,53 @@ body::before{
 }
 
 .welcome-title{
-  font-size:90px;
+  font-size:100px;
   font-weight:bold;
 }
 
 .welcome-sub{
-  font-size:34px;
-  margin-top:20px;
-  opacity:0.9;
+  font-size:44px;
+  margin-top:30px;
+  opacity:0.95;
 }
 
 /* ================= HOME ================= */
 
 .home{
   display:flex;
-  justify-content:center;
-  align-items:center;
+  justify-content:flex-start;
+  align-items:flex-start;
+
+  padding-top:20px;
   height:100%;
 }
 
 .menu{
-  width:1000px;
-  max-width:92%;
+  width:1100px;
+  max-width:94%;
+  margin:0 auto;
+
   display:flex;
   flex-direction:column;
-  gap:28px;
+  gap:35px;
 }
 
-/* ================= CARDS ================= */
+/* ================= BIG TOUCH CARDS ================= */
 
 .card{
   display:flex;
   align-items:center;
-  gap:25px;
+  gap:30px;
 
   background:white;
-  border-radius:28px;
-  padding:20px;
+  border-radius:34px;
+  padding:35px;
 
-  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+  box-shadow:0 12px 28px rgba(0,0,0,0.14);
   cursor:pointer;
 
   transition:0.2s ease;
+  min-height:180px;
 }
 
 .card:active{
@@ -136,33 +147,33 @@ body::before{
 }
 
 .card img{
-  width:180px;
-  height:130px;
+  width:220px;
+  height:150px;
   object-fit:cover;
-  border-radius:18px;
+  border-radius:22px;
 }
 
 /* ================= TEXT ================= */
 
 .text h2{
-  font-size:46px;
+  font-size:56px;
   color:#7A1E2C;
 }
 
 .text p{
-  font-size:26px;
+  font-size:30px;
   color:#555;
 }
 
 /* ================= BLANK ================= */
 
 .blank{
-  height:100%;
+  flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:64px;
+  font-size:70px;
   font-weight:bold;
   color:#7A1E2C;
 }
@@ -171,18 +182,18 @@ body::before{
 
 .back{
   position:absolute;
-  bottom:40px;
+  bottom:50px;
   left:50%;
   transform:translateX(-50%);
 
   background:#7A1E2C;
   color:white;
 
-  padding:26px 80px;
+  padding:30px 100px;
   border:none;
-  border-radius:25px;
+  border-radius:30px;
 
-  font-size:32px;
+  font-size:36px;
   cursor:pointer;
 }
 
@@ -199,8 +210,8 @@ button, .card {
 <div id="welcome" class="page active" onclick="showPage('home')">
 
   <div>
-    <div class="welcome-title">🍽️ StFX Meal Hall</div>
-    <div class="welcome-sub">Tap Anywhere to Begin</div>
+    <div class="welcome-title">Welcome to Meal Hall</div>
+    <div class="welcome-sub">Click to enhance your meal</div>
   </div>
 
 </div>
@@ -211,6 +222,7 @@ button, .card {
   <div class="topbar">Build Your Plate</div>
 
   <div class="home">
+
     <div class="menu">
 
       <div class="card" onclick="showPage('protein')">
@@ -237,16 +249,16 @@ button, .card {
         </div>
       </div>
 
-      <!-- ================= NEW OPTION ================= -->
       <div class="card" onclick="showPage('creative')">
         <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80">
         <div class="text">
           <h2>Get Creative</h2>
-          <p>Build your own custom Meal Hall plate</p>
+          <p>Build your own custom meal</p>
         </div>
       </div>
 
     </div>
+
   </div>
 
 </div>
@@ -271,9 +283,8 @@ button, .card {
   <button class="back" onclick="showPage('home')">← Back</button>
 </div>
 
-<!-- NEW PAGE -->
 <div id="creative" class="page">
-  <div class="topbar">Get Creative in Meal Hall</div>
+  <div class="topbar">Get Creative</div>
   <div class="blank">Coming Soon</div>
   <button class="back" onclick="showPage('home')">← Back</button>
 </div>
@@ -293,7 +304,7 @@ function showPage(id){
   resetTimer();
 }
 
-/* ================= AUTO RESET ================= */
+/* ================= AUTO RESET (T972 KIOSK) ================= */
 
 function resetTimer(){
 
