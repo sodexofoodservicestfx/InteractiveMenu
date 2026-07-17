@@ -29,10 +29,11 @@ body::before{
     url("Morrison%20Hall(1).jpg");
   background-size:cover;
   background-position:center;
-  filter: blur(2px);
-  transform: scale(1.05);
+  filter:blur(2px);
+  transform:scale(1.05);
   z-index:-1;
 }
+
 
 /* PAGE SYSTEM */
 .page{
@@ -47,6 +48,7 @@ body::before{
   opacity:1;
   pointer-events:auto;
 }
+
 
 /* WELCOME */
 #welcome{
@@ -69,14 +71,15 @@ body::before{
   font-size:44px;
   margin-top:25px;
   color:#e6e6e6;
-  animation: blink 1.2s infinite;
+  animation:blink 1.2s infinite;
 }
 
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0.2; }
-  100% { opacity: 1; }
+@keyframes blink{
+  0%{opacity:1;}
+  50%{opacity:.2;}
+  100%{opacity:1;}
 }
+
 
 /* MENU */
 .menu{
@@ -89,6 +92,7 @@ body::before{
   padding-top:140px;
 }
 
+
 /* CARDS */
 .card{
   display:flex;
@@ -96,10 +100,10 @@ body::before{
   background:rgba(255,255,255,0.95);
   border-radius:34px;
   padding:45px 50px;
-  box-shadow:0 18px 40px rgba(0,0,0,0.35);
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
   cursor:pointer;
   min-height:180px;
-  transition:0.2s ease;
+  transition:.2s ease;
   border-left:12px solid #E4002B;
 }
 
@@ -118,229 +122,426 @@ body::before{
   color:#444;
 }
 
-/* PAGE CONTENT */
-.page-content{
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+
+/* ======================= */
+/* PROTEIN PAGE */
+/* ======================= */
+
+.suggestion-page{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+  padding-top:90px;
+  color:white;
+  text-align:center;
 }
 
-.coming{
-  font-size:72px;
+.suggestion-page h1{
+  font-size:70px;
+  margin-bottom:35px;
+}
+
+
+.suggestion-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+
+
+.suggestion-card{
+  background:white;
+  color:#003A70;
+  border-radius:30px;
+  padding:35px;
+  min-height:190px;
+  text-align:left;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+
+
+.suggestion-card h2{
+  font-size:38px;
+  margin-bottom:15px;
+}
+
+
+.suggestion-card p{
+  font-size:25px;
+  color:#444;
+  line-height:1.35;
+}
+
+
+.find-protein{
+  margin-top:30px;
+  background:#E4002B;
+  color:white;
+  border-radius:25px;
+  padding:25px;
+  font-size:30px;
   font-weight:bold;
-  color:#ffffff;
-  text-shadow:0 4px 20px rgba(0,0,0,0.6);
 }
 
-/* ========================= */
-/* 🔻 BOTTOM BAR */
-/* ========================= */
+
+
+/* BOTTOM BAR */
 
 .bottom-bar{
   position:fixed;
   bottom:25px;
   left:0;
   right:0;
-
   display:flex;
   justify-content:space-between;
-
-  padding:0 0;
-
   z-index:1000;
 }
 
-/* shared button style */
+
 .bottom-btn{
   width:220px;
   height:75px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   font-size:26px;
   font-weight:bold;
-
-  box-shadow:0 6px 18px rgba(0,0,0,0.25);
-
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
   cursor:pointer;
 }
 
-/* BACK BUTTON (LEFT EDGE) */
-.back-btn{
-  background:#ffffff;
-  color:#003A70;
 
+.back-btn{
+  background:white;
+  color:#003A70;
   border-radius:0 16px 16px 0;
 }
+
 
 .back-btn:hover{
   background:#E4002B;
   color:white;
 }
 
-/* LOGO (RIGHT EDGE) */
-.logo-btn{
-  background:#ffffff;
 
+.logo-btn{
+  background:white;
   border-radius:16px 0 0 16px;
 }
 
+
 .logo-btn img{
   width:140px;
-  display:block;
 }
 
-/* hidden on welcome */
+
 .hide{
-  display:none !important;
+  display:none!important;
 }
+
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <!-- BOTTOM BAR -->
+
 <div id="bottomBar" class="bottom-bar">
 
-  <div class="bottom-btn back-btn" onclick="goBack()">
-    ⟵ Back
-  </div>
+<div class="bottom-btn back-btn" onclick="goBack()">
+⟵ Back
+</div>
 
-  <div class="bottom-btn logo-btn">
-    <img src="logo.png" alt="Sodexo Logo">
-  </div>
+<div class="bottom-btn logo-btn">
+<img src="logo.png">
+</div>
 
 </div>
+
+
 
 <!-- WELCOME -->
+
 <div id="welcome" class="page active" onclick="showPage('menu')">
-  <div>
-    <div class="welcome-title">
-      Welcome to<br>Meal Hall
-    </div>
-    <div class="welcome-sub">
-      Click to enhance your meal
-    </div>
-  </div>
+
+<div>
+
+<div class="welcome-title">
+Welcome to<br>Meal Hall
 </div>
+
+<div class="welcome-sub">
+Click to enhance your meal
+</div>
+
+</div>
+
+</div>
+
+
 
 <!-- MENU -->
+
 <div id="menu" class="page">
 
-  <div class="menu">
+<div class="menu">
 
-    <div class="card" onclick="showPage('protein')">
-      <div class="text">
-        <h2>Add Protein</h2>
-        <p>Chicken, Pork, Eggs & more</p>
-      </div>
-    </div>
 
-    <div class="card" onclick="showPage('veg')">
-      <div class="text">
-        <h2>Add Vegetables</h2>
-        <p>Fresh greens & salads</p>
-      </div>
-    </div>
+<div class="card" onclick="showPage('protein')">
 
-    <div class="card" onclick="showPage('fibre')">
-      <div class="text">
-        <h2>Add Fibre</h2>
-        <p>Oats, grains & whole foods</p>
-      </div>
-    </div>
-
-    <div class="card" onclick="showPage('creative')">
-      <div class="text">
-        <h2>Get Creative</h2>
-        <p>Build your own custom meal</p>
-      </div>
-    </div>
-
-  </div>
+<div class="text">
+<h2>Add Protein</h2>
+<p>Chicken, Pork, Eggs & more</p>
+</div>
 
 </div>
 
-<!-- PAGES -->
+
+
+<div class="card" onclick="showPage('veg')">
+
+<div class="text">
+<h2>Add Vegetables</h2>
+<p>Fresh greens & salads</p>
+</div>
+
+</div>
+
+
+
+<div class="card" onclick="showPage('fibre')">
+
+<div class="text">
+<h2>Add Fibre</h2>
+<p>Oats, grains & whole foods</p>
+</div>
+
+</div>
+
+
+
+<div class="card" onclick="showPage('creative')">
+
+<div class="text">
+<h2>Get Creative</h2>
+<p>Build your own custom meal</p>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- PROTEIN PAGE -->
+
 <div id="protein" class="page">
-  <div class="page-content"><div class="coming">Coming Soon</div></div>
+
+
+<div class="suggestion-page">
+
+<h1>Add Protein</h1>
+
+
+<div class="suggestion-grid">
+
+
+<div class="suggestion-card">
+
+<h2>🫘 Add Legumes</h2>
+
+<p>
+Find chickpeas, beans, and lentils at the salad bar.
+Add them to salads, soups, or stews for extra protein and fibre.
+</p>
+
 </div>
+
+
+
+<div class="suggestion-card">
+
+<h2>🍗 Add Protein to Salads</h2>
+
+<p>
+Building a salad?
+Add protein from the Classics Station on top for a more balanced meal.
+</p>
+
+</div>
+
+
+
+<div class="suggestion-card">
+
+<h2>🥚 Mix & Match Proteins</h2>
+
+<p>
+Combine proteins like eggs, tofu, cheese,
+or legumes to create a more complete meal.
+</p>
+
+</div>
+
+
+
+<div class="suggestion-card">
+
+<h2>🧀 Add Toppings</h2>
+
+<p>
+Add goat cheese from the salad bar to main dishes,
+salads, or pizza slices.
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="find-protein">
+
+📍 Other Protein Locations:
+Sandwich Area • Salad Bar • Soup Station
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- OTHER PAGES -->
 
 <div id="veg" class="page">
-  <div class="page-content"><div class="coming">Coming Soon</div></div>
+<div class="page-content">
+<div class="coming">Coming Soon</div>
 </div>
+</div>
+
 
 <div id="fibre" class="page">
-  <div class="page-content"><div class="coming">Coming Soon</div></div>
+<div class="page-content">
+<div class="coming">Coming Soon</div>
+</div>
 </div>
 
+
 <div id="creative" class="page">
-  <div class="page-content"><div class="coming">Coming Soon</div></div>
+<div class="page-content">
+<div class="coming">Coming Soon</div>
 </div>
+</div>
+
+
+
 
 <script>
 
-let currentPage = "welcome";
+
+let currentPage="welcome";
 let timer;
 
-const bottomBar = document.getElementById("bottomBar");
+
+const bottomBar=document.getElementById("bottomBar");
+
+
 
 function showPage(id){
 
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
-
-  document.getElementById(id).classList.add("active");
-
-  currentPage = id;
-
-  updateUI();
-  resetTimer();
-}
-
-function goBack(){
-  if(currentPage === "menu"){
-    showPage("welcome");
-  } else {
-    showPage("menu");
-  }
-}
-
-/* ========================= */
-/* ⏱️ 20 SECOND TIMEOUT */
-/* ========================= */
-
-function resetTimer(){
-  clearTimeout(timer);
-
-  timer = setTimeout(()=>{
-    showPage("welcome");
-  }, 20000); // 🔥 20 seconds
-}
-
-/* reset on interaction */
-["click","touchstart","mousemove","keydown"].forEach(evt=>{
-  document.addEventListener(evt, resetTimer);
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
 });
 
-/* hide bottom bar on welcome */
-function updateUI(){
-  if(currentPage === "welcome"){
-    bottomBar.classList.add("hide");
-  } else {
-    bottomBar.classList.remove("hide");
-  }
-}
+
+document.getElementById(id).classList.add("active");
+
+
+currentPage=id;
 
 updateUI();
+
 resetTimer();
 
+}
+
+
+
+function goBack(){
+
+if(currentPage==="menu"){
+
+showPage("welcome");
+
+}else{
+
+showPage("menu");
+
+}
+
+}
+
+
+
+function resetTimer(){
+
+clearTimeout(timer);
+
+
+timer=setTimeout(()=>{
+
+showPage("welcome");
+
+},20000);
+
+
+}
+
+
+
+["click","touchstart","keydown"].forEach(evt=>{
+
+document.addEventListener(evt,resetTimer);
+
+});
+
+
+
+function updateUI(){
+
+if(currentPage==="welcome"){
+
+bottomBar.classList.add("hide");
+
+}else{
+
+bottomBar.classList.remove("hide");
+
+}
+
+}
+
+
+
+updateUI();
+
+resetTimer();
+
+
+
 </script>
+
 
 </body>
 </html>
