@@ -19,7 +19,11 @@ html,body{
   overflow:hidden;
 }
 
+
+/* ======================= */
 /* BACKGROUND */
+/* ======================= */
+
 body::before{
   content:"";
   position:fixed;
@@ -35,7 +39,11 @@ body::before{
 }
 
 
+
+/* ======================= */
 /* PAGE SYSTEM */
+/* ======================= */
+
 .page{
   position:absolute;
   inset:0;
@@ -50,7 +58,11 @@ body::before{
 }
 
 
+
+/* ======================= */
 /* WELCOME */
+/* ======================= */
+
 #welcome{
   display:flex;
   justify-content:center;
@@ -61,11 +73,13 @@ body::before{
   cursor:pointer;
 }
 
+
 .welcome-title{
   font-size:130px;
   font-weight:bold;
   line-height:1.05;
 }
+
 
 .welcome-sub{
   font-size:44px;
@@ -74,14 +88,19 @@ body::before{
   animation:blink 1.2s infinite;
 }
 
+
 @keyframes blink{
   0%{opacity:1;}
-  50%{opacity:.2;}
+  50%{opacity:0.2;}
   100%{opacity:1;}
 }
 
 
+
+/* ======================= */
 /* MENU */
+/* ======================= */
+
 .menu{
   width:1100px;
   max-width:94%;
@@ -93,23 +112,25 @@ body::before{
 }
 
 
-/* CARDS */
+
 .card{
   display:flex;
   align-items:center;
   background:rgba(255,255,255,0.95);
   border-radius:34px;
   padding:45px 50px;
-  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  box-shadow:0 18px 40px rgba(0,0,0,0.35);
   cursor:pointer;
   min-height:180px;
-  transition:.2s ease;
+  transition:0.2s ease;
   border-left:12px solid #E4002B;
 }
+
 
 .card:hover{
   transform:scale(1.02);
 }
+
 
 .text h2{
   font-size:58px;
@@ -117,19 +138,18 @@ body::before{
   font-weight:800;
 }
 
+
 .text p{
   font-size:30px;
   color:#444;
 }
 
 
-/* ======================= */
-/* PROTEIN PAGE */
-/* ======================= */
 
 /* ======================= */
 /* PROTEIN PAGE */
 /* ======================= */
+
 
 .suggestion-page{
   width:85%;
@@ -140,10 +160,12 @@ body::before{
   text-align:center;
 }
 
+
 .suggestion-page h1{
   font-size:70px;
   margin-bottom:35px;
 }
+
 
 
 .suggestion-list{
@@ -153,14 +175,16 @@ body::before{
 }
 
 
+
 .suggestion-card{
   background:white;
   color:#003A70;
   border-radius:30px;
   padding:25px 40px;
   text-align:left;
-  box-shadow:0 12px 30px rgba(0,0,0,.3);
+  box-shadow:0 12px 30px rgba(0,0,0,0.3);
 }
+
 
 
 .suggestion-card h2{
@@ -169,10 +193,12 @@ body::before{
 }
 
 
+
 .suggestion-card p{
   font-size:26px;
   color:#444;
 }
+
 
 
 .find-protein{
@@ -187,37 +213,48 @@ body::before{
 
 
 
+/* ======================= */
 /* BOTTOM BAR */
+/* ======================= */
 
 .bottom-bar{
   position:fixed;
   bottom:25px;
   left:0;
   right:0;
+
   display:flex;
   justify-content:space-between;
+
   z-index:1000;
 }
+
 
 
 .bottom-btn{
   width:220px;
   height:75px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   font-size:26px;
   font-weight:bold;
-  box-shadow:0 6px 18px rgba(0,0,0,.25);
+
+  box-shadow:0 6px18px rgba(0,0,0,0.25);
+
   cursor:pointer;
 }
 
 
+
 .back-btn{
-  background:white;
+  background:#ffffff;
   color:#003A70;
   border-radius:0 16px 16px 0;
 }
+
 
 
 .back-btn:hover{
@@ -226,10 +263,12 @@ body::before{
 }
 
 
+
 .logo-btn{
-  background:white;
+  background:#ffffff;
   border-radius:16px 0 0 16px;
 }
+
 
 
 .logo-btn img{
@@ -237,22 +276,15 @@ body::before{
 }
 
 
+
 .hide{
-  display:none!important;
+  display:none !important;
 }
-  
-.food-icon{
-  width:45px;
-  height:45px;
-  object-fit:contain;
-  vertical-align:middle;
-  margin-right:15px;
-}
+
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -265,15 +297,15 @@ body::before{
 ⟵ Back
 </div>
 
+
 <div class="bottom-btn logo-btn">
-<img src="logo.png">
+<img src="logo.png" alt="Sodexo Logo">
 </div>
 
 </div>
-
-
-
-<!-- WELCOME -->
+<!-- ======================= -->
+<!-- WELCOME PAGE -->
+<!-- ======================= -->
 
 <div id="welcome" class="page active" onclick="showPage('menu')">
 
@@ -282,6 +314,7 @@ body::before{
 <div class="welcome-title">
 Welcome to<br>Meal Hall
 </div>
+
 
 <div class="welcome-sub">
 Click to enhance your meal
@@ -293,9 +326,12 @@ Click to enhance your meal
 
 
 
-<!-- MENU -->
+<!-- ======================= -->
+<!-- MENU PAGE -->
+<!-- ======================= -->
 
 <div id="menu" class="page">
+
 
 <div class="menu">
 
@@ -303,8 +339,13 @@ Click to enhance your meal
 <div class="card" onclick="showPage('protein')">
 
 <div class="text">
+
 <h2>Add Protein</h2>
-<p>Chicken, Pork, Eggs & more</p>
+
+<p>
+Chicken, Pork, Eggs & more
+</p>
+
 </div>
 
 </div>
@@ -314,8 +355,13 @@ Click to enhance your meal
 <div class="card" onclick="showPage('veg')">
 
 <div class="text">
+
 <h2>Add Vegetables</h2>
-<p>Fresh greens & salads</p>
+
+<p>
+Fresh greens & salads
+</p>
+
 </div>
 
 </div>
@@ -325,8 +371,13 @@ Click to enhance your meal
 <div class="card" onclick="showPage('fibre')">
 
 <div class="text">
+
 <h2>Add Fibre</h2>
-<p>Oats, grains & whole foods</p>
+
+<p>
+Oats, grains & whole foods
+</p>
+
 </div>
 
 </div>
@@ -336,37 +387,49 @@ Click to enhance your meal
 <div class="card" onclick="showPage('creative')">
 
 <div class="text">
+
 <h2>Get Creative</h2>
-<p>Build your own custom meal</p>
+
+<p>
+Build your own custom meal
+</p>
+
+</div>
+
+</div>
+
+
+
 </div>
 
 </div>
 
 
-</div>
-
-</div>
 
 
 
+<!-- ======================= -->
 <!-- PROTEIN PAGE -->
+<!-- ======================= -->
+
 
 <div id="protein" class="page">
 
+
 <div class="suggestion-page">
 
+
 <h1>Add Protein</h1>
+
 
 
 <div class="suggestion-list">
 
 
+
 <div class="suggestion-card">
 
-<h2>
-<img src="legumes.png" class="food-icon">
-Add Legumes
-</h2>
+<h2>🫘 Add Legumes</h2>
 
 <p>
 Chickpeas, beans & lentils from the salad bar.
@@ -374,6 +437,8 @@ Adds protein and fibre.
 </p>
 
 </div>
+
+
 
 
 <div class="suggestion-card">
@@ -387,15 +452,19 @@ Top your salad with protein from the Classics Station.
 </div>
 
 
+
+
 <div class="suggestion-card">
 
 <h2>🥚 Mix & Match Proteins</h2>
 
 <p>
-Pair extra protein options like eggs, tofu, cheese, or legumes with your main protein.
+Add eggs, tofu, cheese, or legumes alongside your main protein.
 </p>
 
 </div>
+
+
 
 
 <div class="suggestion-card">
@@ -409,7 +478,10 @@ Try goat cheese on salads, pizza, or main dishes.
 </div>
 
 
+
 </div>
+
+
 
 
 <div class="find-protein">
@@ -420,90 +492,144 @@ Salad Bar • Classics Station • Sandwich Area • Soup Station
 </div>
 
 
-</div>
 
 </div>
 
 
+</div>
 
+
+
+
+
+<!-- ======================= -->
 <!-- OTHER PAGES -->
+<!-- ======================= -->
+
 
 <div id="veg" class="page">
+
 <div class="page-content">
-<div class="coming">Coming Soon</div>
+
+<div class="coming">
+Coming Soon
 </div>
+
 </div>
+
+</div>
+
+
 
 
 <div id="fibre" class="page">
+
 <div class="page-content">
-<div class="coming">Coming Soon</div>
+
+<div class="coming">
+Coming Soon
 </div>
+
 </div>
+
+</div>
+
+
 
 
 <div id="creative" class="page">
+
 <div class="page-content">
-<div class="coming">Coming Soon</div>
+
+<div class="coming">
+Coming Soon
 </div>
+
+</div>
+
 </div>
 
 
 
+
+
+<!-- ======================= -->
+<!-- JAVASCRIPT -->
+<!-- ======================= -->
 
 <script>
 
 
-let currentPage="welcome";
+let currentPage = "welcome";
+
 let timer;
 
 
-const bottomBar=document.getElementById("bottomBar");
+
+const bottomBar = document.getElementById("bottomBar");
+
 
 
 
 function showPage(id){
 
+
 document.querySelectorAll(".page").forEach(p=>{
+
 p.classList.remove("active");
+
 });
+
 
 
 document.getElementById(id).classList.add("active");
 
 
-currentPage=id;
+
+currentPage = id;
+
+
 
 updateUI();
 
 resetTimer();
 
+
 }
+
 
 
 
 function goBack(){
 
-if(currentPage==="menu"){
+
+if(currentPage === "menu"){
 
 showPage("welcome");
 
-}else{
+}
+
+else{
 
 showPage("menu");
 
 }
 
+
 }
+
+
 
 
 
 function resetTimer(){
 
+
 clearTimeout(timer);
 
 
-timer=setTimeout(()=>{
+
+timer = setTimeout(()=>{
 
 showPage("welcome");
 
@@ -514,27 +640,44 @@ showPage("welcome");
 
 
 
+
+
 ["click","touchstart","keydown"].forEach(evt=>{
 
-document.addEventListener(evt,resetTimer);
+
+document.addEventListener(evt, resetTimer);
+
 
 });
 
 
 
+
+
+
 function updateUI(){
 
-if(currentPage==="welcome"){
+
+if(currentPage === "welcome"){
+
 
 bottomBar.classList.add("hide");
 
-}else{
+
+}
+
+else{
+
 
 bottomBar.classList.remove("hide");
 
-}
 
 }
+
+
+}
+
+
 
 
 
@@ -548,4 +691,5 @@ resetTimer();
 
 
 </body>
+
 </html>
