@@ -1,0 +1,11 @@
+{
+  "name": "StFX Meal Hall",
+  "short_name": "Meal Hall",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#ffffff"
+}
+2. Edit your HTML <head>
+
+Find:
